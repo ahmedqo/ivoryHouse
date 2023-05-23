@@ -18,7 +18,7 @@ class ResetMail extends Mailable
      */
     public $data;
     public $from =  [
-        'address' => 'no-replay@example.com',
+        'address' => env('MAIL_NOREPLAY_ADDRESS'),
     ];
     public function __construct($data)
     {

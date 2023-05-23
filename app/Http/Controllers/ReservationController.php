@@ -153,7 +153,7 @@ class ReservationController extends Controller
             'reservation' => $current
         ];
         MailFunction::reservation($request->email, $data);
-        MailFunction::reservation('system@example.com', $data);
+        MailFunction::reservation(env('MAIL_SYSTEM_ADDRESS'), $data);
 
         return Redirect::route('views.property.show', $property->slug)->with([
             'message' => 'تم الاستئجار بنجاح',
@@ -203,7 +203,7 @@ class ReservationController extends Controller
         }
         $json = [];
         if ($request->has('icecream') && $request->has('icecream_days'))
-            if($request->icecream === "1")
+            if ($request->icecream === "1")
                 array_push($json, [
                     'name' => 'icecream',
                     'days' => intval($request->icecream_days),
@@ -212,7 +212,7 @@ class ReservationController extends Controller
                 ]);
 
         if ($request->has('kayak') && $request->has('kayak_days'))
-            if($request->kayak === "1")
+            if ($request->kayak === "1")
                 array_push($json, [
                     'name' => 'kayak',
                     'days' => intval($request->kayak_days),
@@ -222,14 +222,14 @@ class ReservationController extends Controller
 
         $current = Reservation::findorfail($id);
 
-        if(intval($current->status) != intval($request->status) && intval($request->status) == -1){
+        if (intval($current->status) != intval($request->status) && intval($request->status) == -1) {
             MailFunction::cancel($request->email, [
                 'id' => $request->property,
                 'reservation' => $current,
             ]);
-        } 
+        }
 
-        if((intval($current->status) != intval($request->status) && intval($request->status) == 1) || intval($current->property) != intval($request->property)) {
+        if ((intval($current->status) != intval($request->status) && intval($request->status) == 1) || intval($current->property) != intval($request->property)) {
             MailFunction::reservation($request->email, [
                 'id' => $request->property,
                 'reservation' => $current,

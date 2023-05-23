@@ -18,7 +18,7 @@ class CancelMail extends Mailable
      */
     public $data;
     public $from =  [
-        'address' => 'contact@example.com',
+        'address' => env('MAIL_CONTACT_ADDRESS'),
     ];
     public function __construct($data)
     {

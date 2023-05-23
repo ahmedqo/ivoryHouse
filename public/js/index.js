@@ -78,6 +78,7 @@ function Slider(els, opts = {}) {
             };
 
             this.size && (this.wrap.style[this.__opt.item] = this.size * this.cols + this.gap * (this.cols - 1) + "px");
+            this.size && (this.wrap.style[this.__opt.its] = this.size * this.cols + this.gap * (this.cols - 1) + "px");
 
             this.list.style.width = "";
             this.list.style.flexDirection = "";
@@ -1151,19 +1152,19 @@ function getDateRange(startDateStr, endDateStr) {
     var endDate = new Date(endDateStr);
     var dateRange = [];
     while (startDate <= endDate) {
-      dateRange.push(formatDate(startDate));
-      startDate.setDate(startDate.getDate() + 1);
+        dateRange.push(formatDate(startDate));
+        startDate.setDate(startDate.getDate() + 1);
     }
     return dateRange;
 }
-  
+
 function formatDate(date) {
     var year = date.getFullYear();
     var month = ('0' + (date.getMonth() + 1)).slice(-2);
     var day = ('0' + date.getDate()).slice(-2);
     return year + '-' + month + '-' + day;
 }
-  
+
 function replaceString(array) {
     return array.map(function(string) {
         for (var key in dict) {
@@ -1173,10 +1174,10 @@ function replaceString(array) {
         return string;
     });
 }
-    
+
 const dict = {
     'email': "البريد الإلكتروني",
-    'phone' : "الهاتف",
+    'phone': "الهاتف",
     'identity': "الهوية",
     'first name': "الاسم",
     'last name': "النسب",
