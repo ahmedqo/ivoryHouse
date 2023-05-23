@@ -761,14 +761,14 @@ class Select {
             const index = [...el.current.options].indexOf(option);
             if (option.head) {
                 const item = document.createElement("li");
-                item.className = "text-gray-900 text-md px-2 py-1 font-black header";
+                item.className = "text-gray-950 text-md px-2 py-1 font-black header";
                 item.innerHTML = option.text.trim();
                 el.list.append(item);
             } else {
                 if (!option.innerText.trim().length)
                     continue;
                 const item = document.createElement("li");
-                item.className = option.padd + "text-gray-900 text-md p-2";
+                item.className = option.padd + "text-gray-950 text-md p-2";
                 item.innerHTML = option.innerText.trim();
                 if (option.hasAttribute("selected") && !option.hasAttribute("disabled")) {
                     Select._select({
@@ -783,7 +783,7 @@ class Select {
                 if (option.hasAttribute("disabled")) {
                     item.className += " bg-gray-400";
                 } else {
-                    item.className += " hover:bg-gray-900 hover:text-gray-900 hover:bg-opacity-10 cursor-pointer";
+                    item.className += " hover:bg-gray-950 hover:text-gray-950 hover:bg-opacity-10 cursor-pointer";
                     item.addEventListener("click", e => {
                         Select._select({
                             list: el.list,
@@ -837,7 +837,7 @@ Select._template = (placeholder) => /*html*/ `
         <svg class="block w-6 h-6 pointer-events-none absolute left-4 top-1/2 -translate-y-1/2" fill="currentcolor" viewBox="0 0 48 48">
             <path d="M24 31.8 10.9 18.7 14.2 15.45 24 25.35 33.85 15.5 37.1 18.75Z" />
         </svg>
-        <div x-wrap class="fixed items-center justify-center p-4 inset-0 bg-gray-900 bg-opacity-40 z-20 lg:z-10 lg:absolute lg:top-full lg:inset-auto lg:p-0 lg:w-full lg:rounded-lg hidden">
+        <div x-wrap class="fixed items-center justify-center p-4 inset-0 bg-gray-950 bg-opacity-40 z-20 lg:z-10 lg:absolute lg:top-full lg:inset-auto lg:p-0 lg:w-full lg:rounded-lg hidden">
             <button class="w-10 h-10 absolute top-4 left-4 text-gray-50 rounded-full lg:hidden flex items-center justify-center outline-none hover:bg-gray-50 hover:bg-opacity-10 focus:bg-gray-50 focus:bg-opacity-10">
                 <svg class="block w-6 h-6 pointer-events-none" fill="currentcolor" viewBox="0 96 960 960">
                     <path d="M480 640 282 838q-14 14-32.5 14T218 838q-14-13-14-31.5t14-31.5l198-199-198-198q-13-13-13-32t13-32q12-13 31-13t33 13l198 199 199-200q13-13 31.5-13t32.5 13q13 14 13 32.5T743 377L544 575l198 199q14 14 14 32.5T742 838q-13 14-32 14t-31-14L480 640Z"/>
@@ -845,7 +845,7 @@ Select._template = (placeholder) => /*html*/ `
             </button>
             <div class="w-full bg-gray-50 rounded-lg shadow-md overflow-hidden">
                 <div class="w-full overflow-auto max-h-100 lg:max-h-60">
-                    <input id="search" type="search" placeholder="Search" class="appearance-none sticky top-0 bg-gray-50 border-b border-gray-300 text-gray-900 text-md block w-full p-2 outline-none" />
+                    <input id="search" type="search" placeholder="Search" class="appearance-none sticky top-0 bg-gray-50 border-b border-gray-300 text-gray-950 text-md block w-full p-2 outline-none" />
                     <ul class="w-full">
                     </ul>
                 </div>
@@ -864,6 +864,7 @@ class DatePicker {
             current.date = new Date();
             Class.add(current, "hidden");
             current.setAttribute("readonly", "true");
+            current._remove = (current.getAttribute(DatePicker._remove) || "").split(",").map(e => e.trim());
             const wrapper = document.createElement("div");
             Class.add(wrapper, "relative");
             wrapper.innerHTML = DatePicker._template(current.getAttribute("placeholder"));
@@ -952,10 +953,12 @@ class DatePicker {
             observer.observe(current, config);
             current.insertAdjacentElement("afterend", wrapper);
             current.removeAttribute(DatePicker._trigger);
+            current.removeAttribute(DatePicker._remove);
         }
     }
     static option(opts) {
         this._trigger = opts.trigger || "x-date";
+        this._remove = opts.remove || "x-remove";
         this._el = opts.el || null;
         this._style = {
             color: opts.style.color || "#FFFFFF",
@@ -1005,6 +1008,12 @@ class DatePicker {
             } else if (i === new Date().getDate() && el.current.date.getMonth() === new Date().getMonth() && el.current.date.getFullYear() === new Date().getFullYear()) {
                 item.style.backgroundColor = DatePicker._style.current;
             }
+            if (el.current._remove.includes(_date)) {
+                Class.add(item, 'pointer-events-none', 'bg-gray-950', 'text-gray-50');
+                Class.remove(item, 'text-gray-950');
+                item.style.backgroundColor = "";
+                item.style.color = "";
+            }
             item.addEventListener("click", e => {
                 el.input.value = e.target.dataset.date;
                 el.current.value = e.target.dataset.date;
@@ -1031,6 +1040,7 @@ class DatePicker {
     }
 }
 DatePicker._trigger = "x-date";
+DatePicker._remove = "x-remove";
 DatePicker._el = null;
 DatePicker._style = {
     color: "#FFFFFF",
@@ -1045,7 +1055,7 @@ DatePicker._template = (placeholder) => /*html*/ `
                 <path d="M24 28.25q-.9 0-1.575-.65-.675-.65-.675-1.6 0-.9.675-1.575.675-.675 1.625-.675.9 0 1.55.65t.65 1.6q0 .9-.65 1.575-.65.675-1.6.675Zm-8 0q-.9 0-1.575-.65-.675-.65-.675-1.6 0-.9.65-1.575.65-.675 1.6-.675.9 0 1.575.65.675.65.675 1.6 0 .9-.65 1.575-.65.675-1.6.675Zm15.95 0q-.85 0-1.525-.65-.675-.65-.675-1.6 0-.9.675-1.575.675-.675 1.575-.675.9 0 1.575.65.675.65.675 1.6 0 .9-.675 1.575-.675.675-1.625.675Zm-7.95 8q-.9 0-1.575-.675Q21.75 34.9 21.75 34q0-.9.675-1.575.675-.675 1.625-.675.9 0 1.55.675t.65 1.625q0 .85-.65 1.525-.65.675-1.6.675Zm-8 0q-.9 0-1.575-.675Q13.75 34.9 13.75 34q0-.9.65-1.575.65-.675 1.6-.675.9 0 1.575.675.675.675.675 1.625 0 .85-.65 1.525-.65.675-1.6.675Zm15.95 0q-.85 0-1.525-.675Q29.75 34.9 29.75 34q0-.9.675-1.575.675-.675 1.575-.675.9 0 1.575.675.675.675.675 1.625 0 .85-.675 1.525-.675.675-1.625.675ZM9.5 45.1q-1.85 0-3.2-1.375T4.95 40.55V10.5q0-1.9 1.35-3.25T9.5 5.9h2.95V4.8q0-.7.625-1.325t1.375-.625q.85 0 1.4.625.55.625.55 1.325v1.1h15.2V4.8q0-.7.575-1.325t1.375-.625q.85 0 1.425.625.575.625.575 1.325v1.1h2.95q1.9 0 3.25 1.35t1.35 3.25v30.05q0 1.8-1.35 3.175Q40.4 45.1 38.5 45.1Zm0-4.55h29V19.6h-29v20.95Z"/>
             </svg>
         </span>
-        <div class="fixed items-center justify-center p-4 inset-0 bg-gray-900 bg-opacity-40 z-20 lg:z-10 lg:absolute lg:top-full lg:inset-auto lg:p-0 lg:w-full lg:rounded-lg hidden">
+        <div class="fixed items-center justify-center p-4 inset-0 bg-gray-950 bg-opacity-40 z-20 lg:z-10 lg:absolute lg:top-full lg:inset-auto lg:p-0 lg:w-full lg:rounded-lg hidden">
             <button class="w-10 h-10 absolute top-4 left-4 text-gray-50 rounded-full lg:hidden flex items-center justify-center outline-none hover:bg-gray-50 hover:bg-opacity-10 focus:bg-gray-50 focus:bg-opacity-10">
                 <svg class="block w-6 h-6 pointer-events-none" fill="currentcolor" viewBox="0 96 960 960">
                     <path d="M480 640 282 838q-14 14-32.5 14T218 838q-14-13-14-31.5t14-31.5l198-199-198-198q-13-13-13-32t13-32q12-13 31-13t33 13l198 199 199-200q13-13 31.5-13t32.5 13q13 14 13 32.5T743 377L544 575l198 199q14 14 14 32.5T742 838q-13 14-32 14t-31-14L480 640Z"/>
@@ -1054,35 +1064,35 @@ DatePicker._template = (placeholder) => /*html*/ `
             <div class="w-full bg-gray-50 rounded-lg shadow-md overflow-hidden">
                 <div class="w-full overflow-auto flex flex-col">
                     <div class="w-full grid grid-rows-1 grid-cols-7 items-center bg-yellow-600 p-2">
-                        <button class="w-full aspect-square flex items-center justify-center text-gray-900 rounded-md outline-none hover:bg-gray-900 hover:text-gray-900 hover:bg-opacity-10 focus:bg-gray-900 focus:text-gray-900 focus:bg-opacity-10 cursor-pointer">
-                            <svg class="block w-5 h-5 pointer-events-none" fill="currentcolor" viewBox="0 0 48 48">
-                                <path d="M15.25 44.95 11.3 41l17.1-17.1L11.3 6.8l3.95-3.95 21 21.05Z"/>
+                        <button class="w-full aspect-square flex items-center justify-center text-gray-950 rounded-md outline-none hover:bg-gray-950 hover:text-gray-950 hover:bg-opacity-10 focus:bg-gray-950 focus:text-gray-950 focus:bg-opacity-10 cursor-pointer">
+                            <svg class="block w-10 h-10 pointer-events-none" fill="currentcolor" viewBox="0 -960 960 960">
+                                <path d="M344-251q-14-15-14-33.5t14-31.5l164-165-165-166q-14-12-13.5-32t14.5-33q13-14 31.5-13.5T407-712l199 199q6 6 10 14.5t4 17.5q0 10-4 18t-10 14L408-251q-13 13-32 12.5T344-251Z"/>
                             </svg>
                         </button>
-                        <h1 class="flex-1 text-xl font-black text-gray-900 text-center col-span-5 px-2">
+                        <h1 class="flex-1 text-xl font-black text-gray-950 text-center col-span-5 px-2">
                             Home
                         </h1>
-                        <button class="w-full aspect-square flex items-center justify-center text-gray-900 rounded-md outline-none hover:bg-gray-900 hover:text-gray-900 hover:bg-opacity-10 focus:bg-gray-900 focus:text-gray-900 focus:bg-opacity-10 cursor-pointer">
-                            <svg class="block w-5 h-5 pointer-events-none" fill="currentcolor" viewBox="0 0 48 48">
-                                <path d="M21.15 45.05.1 24 21.15 2.95l3.9 3.95L7.95 24l17.1 17.1Z"/>
+                        <button class="w-full aspect-square flex items-center justify-center text-gray-950 rounded-md outline-none hover:bg-gray-950 hover:text-gray-950 hover:bg-opacity-10 focus:bg-gray-950 focus:text-gray-950 focus:bg-opacity-10 cursor-pointer">
+                            <svg class="block w-10 h-10 pointer-events-none" fill="currentcolor" viewBox="0 -960 960 960">
+                                <path d="M528-251 331-449q-7-6-10.5-14t-3.5-18q0-9 3.5-17.5T331-513l198-199q13-12 32-12t33 12q13 13 12.5 33T593-646L428-481l166 166q13 13 13 32t-13 32q-14 13-33.5 13T528-251Z"/>
                             </svg>
                         </button>
                     </div>
-                    <ul class="w-full grid grid-rows-1 grid-cols-7 px-2 mt-2">
-                        <li class="w-full flex items-center justify-center rounded-md text-gray-900 text-[.3rem]">الأحد</li>
-                        <li class="w-full flex items-center justify-center rounded-md text-gray-900 text-[.3rem]">الاثنين</li>
-                        <li class="w-full flex items-center justify-center rounded-md text-gray-900 text-[.3rem]">الثلاثاء</li>
-                        <li class="w-full flex items-center justify-center rounded-md text-gray-900 text-[.3rem]">الأربعاء</li>
-                        <li class="w-full flex items-center justify-center rounded-md text-gray-900 text-[.3rem]">الخميس</li>
-                        <li class="w-full flex items-center justify-center rounded-md text-gray-900 text-[.3rem]">الجمعة</li>
-                        <li class="w-full flex items-center justify-center rounded-md text-gray-900 text-[.3rem]">السبت</li>
+                    <ul class="w-full grid grid-rows-1 grid-cols-7 px-2 mt-2 gap-1">
+                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.3rem]">الأحد</li>
+                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.3rem]">الاثنين</li>
+                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.3rem]">الثلاثاء</li>
+                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.3rem]">الأربعاء</li>
+                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.3rem]">الخميس</li>
+                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.3rem]">الجمعة</li>
+                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.3rem]">السبت</li>
                     </ul>
-                    <ul class="w-full grid grid-rows-1 grid-cols-7 px-2 pb-2"></ul>
+                    <ul class="w-full grid grid-rows-1 grid-cols-7 px-2 pb-2 gap-1"></ul>
                 </div>
             </div>
         </div>
     `;
-DatePicker._class = "w-full h-8 flex items-center justify-center font-semibold rounded-md text-gray-900 text-sm hover:bg-gray-900 hover:text-gray-900 hover:bg-opacity-10 cursor-pointer";
+DatePicker._class = "w-full h-8 flex items-center justify-center font-semibold rounded-md text-gray-950 text-sm hover:bg-gray-950 hover:text-gray-950 hover:bg-opacity-10 cursor-pointer";
 DatePicker._months = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
 DatePicker._days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 

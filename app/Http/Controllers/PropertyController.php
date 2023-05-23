@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Functions\DateFunction;
 use App\Functions\FileFunction;
 use App\Models\Property;
 use App\Models\Setting;
@@ -39,6 +40,12 @@ class PropertyController extends Controller
     {
         $data = Property::where('slug', $slug)->first();
         $images = FileFunction::all($data->id);
+        $reservations = Reservation::where('property', $data->id)->where('status', 1)->get();
+        $dates = [];
+        foreach ($reservations as $res) {
+            $dates = array_merge($dates, DateFunction::period($res->startDate, $res->endDate));
+        }
+        $data->dates = join(', ', $dates);
         return view('property', compact('data', 'images'));
     }
 

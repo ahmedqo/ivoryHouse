@@ -17,12 +17,12 @@ class ReservationMail extends Mailable
      * @return void
      */
     public $data;
-    public $from =  [
-        'address' => env('MAIL_CONTACT_ADDRESS'),
-    ];
     public function __construct($data)
     {
         $this->data = $data;
+        $this->from =  [
+            'address' => env('MAIL_CONTACT_ADDRESS'),
+        ];
     }
 
     /**

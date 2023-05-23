@@ -165,7 +165,7 @@ class ReservationController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'property' => ['required', 'integer'],
-            'status' => ['required', 'integer'],
+            'status' => ['required', 'string'],
             'name' => ['required', 'string'],
             'nationality' => ['required', 'string'],
             'email' => ['required', 'email'],

@@ -5,12 +5,12 @@
     <form action="{{ route('views.forgot') }}" method="POST"
         class="relative w-full mx-auto flex flex-col bg-gray-950 gap-4 border-2 border-yellow-600 rounded-lg lg:rounded-2xl p-4 pb-10">
         @csrf
-        <p class="text-yellow-600 text-md font-semibold">
+        <p class="text-yellow-600 text-sm font-semibold">
             هل نسيت الرمز السري؟ لا مشكلة. فقط أخبرنا بعنوان بريدك الإلكتروني وسنرسل لك رابط
             الذي سيسمح لك باختيار رمز سري جديد.
         </p>
         <div class="flex flex-col gap-2">
-            <label for="email" class="text-gray-50 text-lg font-black">البريد الإلكتروني</label>
+            <label for="email" class="text-gray-50 text-md font-black">البريد الإلكتروني</label>
             <input type="email" id="email" name="email"
                 class="appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block w-full h-[48px] py-2 px-4" />
         </div>

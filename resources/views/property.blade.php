@@ -13,19 +13,19 @@
     <header class="relative bg-gray-900 z-[1]">
         <div id="slider-main" dir="ltr" class="absolute inset-0 z-[-1]">
             <ul>
-               <li>
+                <li>
                     <img src="{{ asset('img/bg-1.png') }}"class="w-full h-full object-cover" />
                 </li>
-                 <li>
+                <li>
                     <img src="{{ asset('img/bg-2.png') }}"class="w-full h-full object-cover" />
                 </li>
-                 <li>
+                <li>
                     <img src="{{ asset('img/bg-3.png') }}"class="w-full h-full object-cover" />
                 </li>
-                 <li>
+                <li>
                     <img src="{{ asset('img/bg-4.png') }}"class="w-full h-full object-cover" />
                 </li>
-                 <li>
+                <li>
                     <img src="{{ asset('img/bg-5.png') }}"class="w-full h-full object-cover" />
                 </li>
             </ul>
@@ -61,7 +61,8 @@
                     <div class="flex-1 relative">
                         <svg class="pointer-events-none w-6 h-6 text-gray-950 absolute top-1/2 -translate-y-1/2 left-4"
                             fill="currentColor" viewBox="0 96 960 960">
-                            <path d="M479.983 1020Q335 1020 244 977.575T153 865q0-35 31-68.5t86-55.5l42 84q-19 5-39 16.5T241 864q19.29 26.8 92.145 45.4Q406 928 481.2 928t147.533-18.6Q701.067 890.8 721 864q-12-10-32.5-22T651 825l41-83q56 22 86 55t30 68q0 70.15-91.517 112.575Q624.965 1020 479.983 1020ZM480 882q-17.586 0-30.793-9T432 847q-23-67-60-116.5T301 634q-37.861-48.058-63.93-99.529Q211 483 211 413q0-113.387 77.024-192.693Q365.047 141 480.024 141 595 141 673 220.307 751 299.613 751 413q0 70-27.5 121.5T661 634q-37 47-73.5 96.5T529 847q-5 17-18.207 26T480 882Zm.25-408Q505 474 524 456t19-42.75q0-24.75-19.25-44t-44-19.25q-24.75 0-43.25 19.25t-18.5 44Q418 438 436.75 456t43.5 18Z"/>
+                            <path
+                                d="M479.983 1020Q335 1020 244 977.575T153 865q0-35 31-68.5t86-55.5l42 84q-19 5-39 16.5T241 864q19.29 26.8 92.145 45.4Q406 928 481.2 928t147.533-18.6Q701.067 890.8 721 864q-12-10-32.5-22T651 825l41-83q56 22 86 55t30 68q0 70.15-91.517 112.575Q624.965 1020 479.983 1020ZM480 882q-17.586 0-30.793-9T432 847q-23-67-60-116.5T301 634q-37.861-48.058-63.93-99.529Q211 483 211 413q0-113.387 77.024-192.693Q365.047 141 480.024 141 595 141 673 220.307 751 299.613 751 413q0 70-27.5 121.5T661 634q-37 47-73.5 96.5T529 847q-5 17-18.207 26T480 882Zm.25-408Q505 474 524 456t19-42.75q0-24.75-19.25-44t-44-19.25q-24.75 0-43.25 19.25t-18.5 44Q418 438 436.75 456t43.5 18Z" />
                         </svg>
                         <input type="text" placeholder="المكان" name="address"
                             class="flex-1 appearance-none bg-gray-50 text-gray-950 text-lg rounded-md lg:rounded-xl block w-full h-[48px] py-2 px-4 pl-12" />
@@ -88,11 +89,13 @@
                 class="p-4 lg:p-6 flex flex-col gap-4 lg:gap-6 lg:col-span-7 rounded-t-lg lg:rounded-l-2xl lg:rounded-t-none bg-gray-950 order-2 lg:order-1 z-[2]">
                 <div class="w-full flex flex-wrap items-center gap-2 lg:mt-2">
                     <h1 class="flex-1 text-xl lg:text-3xl font-black text-gray-50">{{ $data->title }}</h1>
-                    <span class="w-max block text-lg lg:text-2xl font-black text-gray-50">{{ $data->price }} دينار</span>
+                    <span class="w-max block text-lg lg:text-2xl font-black text-gray-50">{{ $data->price }}
+                        دينار</span>
                     <p class="w-full text-md lg:text-lg text-gray-50 flex gap-1">
                         <svg class="pointer-events-none w-4 lg:w-6 h-4 lg:h-6 text-yellow-600 mt-1" fill="currentColor"
                             viewBox="0 96 960 960">
-                            <path d="m657 586 84 75v92H526v235l-46 45-45-45V753H220v-92l78-75V271h-50v-91h459v91h-50v315Z"/>
+                            <path
+                                d="m657 586 84 75v92H526v235l-46 45-45-45V753H220v-92l78-75V271h-50v-91h459v91h-50v315Z" />
                         </svg>
                         <span>{{ $data->address }}, {{ $data->city }}, {{ $data->state }},
                             {{ $data->zipcode }}</span>
@@ -101,12 +104,12 @@
                 <div class="w-full px-4">
                     <div class="relative">
                         <div id="slider-container" dir="ltr"
-                            class="w-full rounded-xl lg:rounded-3xl overflow-hidden aspect-video bg-gray-50">
+                            class="w-full rounded-lg lg:rounded-2xl overflow-hidden aspect-video bg-gray-900">
                             <ul>
                                 @foreach ($images as $image)
                                     <li>
                                         <img src="{{ asset('storage/files/' . $image->name) }}"
-                                            class="w-full h-full object-cover" />
+                                            class="w-full h-full object-contain" />
                                     </li>
                                 @endforeach
                             </ul>
@@ -128,7 +131,8 @@
                             </svg>
                         </button>
                     </div>
-                    <div id="slider-buttons" dir="ltr" class="relative mx-auto overflow-hidden -mt-6 lg:-mt-20">
+                    <div id="slider-buttons" dir="ltr"
+                        class="relative mx-auto overflow-hidden -mt-6 lg:-mt-20 h-[60px] lg:h-[160px]">
                         <ul>
                             @foreach ($images as $image)
                                 <li class="aspect-square">
@@ -193,11 +197,13 @@
             </div>
             <div
                 class="bg-gray-50 lg:col-span-5 -mb-10 lg:mb-0 lg:-mr-10 pb-10 lg:pb-0 lg:pr-10 overflow-hidden order-1 lg:order-2 relative z-[1]">
-                <div class="flex lg:flex-col w-[80%] h-max lg:w-max lg:h-[80%] bottom-10 left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-0 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 absolute">
+                <div
+                    class="flex lg:flex-col w-[80%] h-max lg:w-max lg:h-[80%] bottom-10 left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-0 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 absolute">
                     <ul shadow
-                    class="w-max flex lg:flex-col bg-yellow-600 gap-4 p-4 rounded-t-lg lg:rounded-r-2xl lg:rounded-tl-none">
+                        class="w-max flex lg:flex-col bg-yellow-600 gap-4 p-4 rounded-t-lg lg:rounded-r-2xl lg:rounded-tl-none">
                         <li>
-                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('views.property.show', $data->slug)) }}" class="flex text-gray-950">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('views.property.show', $data->slug)) }}"
+                                class="flex text-gray-950">
                                 <svg class="pointer-events-none w-6 h-6" fill="currentColor" viewBox="0 0 30 31">
                                     <path
                                         d="M3.33333 0.250977H26.6667C27.5507 0.250977 28.3986 0.602166 29.0237 1.22729C29.6488 1.85241 30 2.70025 30 3.58431V26.9176C30 27.8017 29.6488 28.6495 29.0237 29.2747C28.3986 29.8998 27.5507 30.251 26.6667 30.251H3.33333C2.44928 30.251 1.60143 29.8998 0.976311 29.2747C0.351189 28.6495 0 27.8017 0 26.9176V3.58431C0 2.70025 0.351189 1.85241 0.976311 1.22729C1.60143 0.602166 2.44928 0.250977 3.33333 0.250977ZM25 3.58431H20.8333C19.2862 3.58431 17.8025 4.19889 16.7085 5.29285C15.6146 6.38682 15 7.87055 15 9.41764V13.5843H11.6667V18.5843H15V30.251H20V18.5843H25V13.5843H20V10.251C20 9.80895 20.1756 9.38503 20.4882 9.07246C20.8007 8.7599 21.2246 8.58431 21.6667 8.58431H25V3.58431Z">
@@ -206,7 +212,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.instagram.com/?url={{ urlencode(route('views.property.show', $data->slug)) }}" class="flex text-gray-950">
+                            <a href="https://www.instagram.com/?url={{ urlencode(route('views.property.show', $data->slug)) }}"
+                                class="flex text-gray-950">
                                 <svg class="pointer-events-none w-6 h-6" fill="currentColor" viewBox="0 0 30 31">
                                     <path
                                         d="M8.7 0.250977H21.3C26.1 0.250977 30 4.15098 30 8.95098V21.551C30 23.8584 29.0834 26.0712 27.4518 27.7028C25.8203 29.3344 23.6074 30.251 21.3 30.251H8.7C3.9 30.251 0 26.351 0 21.551V8.95098C0 6.64359 0.916605 4.43071 2.54817 2.79915C4.17974 1.16758 6.39262 0.250977 8.7 0.250977ZM8.4 3.25098C6.96783 3.25098 5.59432 3.8199 4.58162 4.8326C3.56893 5.8453 3 7.21881 3 8.65098V21.851C3 24.836 5.415 27.251 8.4 27.251H21.6C23.0322 27.251 24.4057 26.6821 25.4184 25.6694C26.4311 24.6567 27 23.2831 27 21.851V8.65098C27 5.66598 24.585 3.25098 21.6 3.25098H8.4ZM22.875 5.50098C23.3723 5.50098 23.8492 5.69852 24.2008 6.05015C24.5525 6.40178 24.75 6.8787 24.75 7.37598C24.75 7.87326 24.5525 8.35017 24.2008 8.7018C23.8492 9.05343 23.3723 9.25098 22.875 9.25098C22.3777 9.25098 21.9008 9.05343 21.5492 8.7018C21.1975 8.35017 21 7.87326 21 7.37598C21 6.8787 21.1975 6.40178 21.5492 6.05015C21.9008 5.69852 22.3777 5.50098 22.875 5.50098ZM15 7.75098C16.9891 7.75098 18.8968 8.54115 20.3033 9.94768C21.7098 11.3542 22.5 13.2619 22.5 15.251C22.5 17.2401 21.7098 19.1478 20.3033 20.5543C18.8968 21.9608 16.9891 22.751 15 22.751C13.0109 22.751 11.1032 21.9608 9.6967 20.5543C8.29018 19.1478 7.5 17.2401 7.5 15.251C7.5 13.2619 8.29018 11.3542 9.6967 9.94768C11.1032 8.54115 13.0109 7.75098 15 7.75098ZM15 10.751C13.8065 10.751 12.6619 11.2251 11.818 12.069C10.9741 12.9129 10.5 14.0575 10.5 15.251C10.5 16.4445 10.9741 17.589 11.818 18.433C12.6619 19.2769 13.8065 19.751 15 19.751C16.1935 19.751 17.3381 19.2769 18.182 18.433C19.0259 17.589 19.5 16.4445 19.5 15.251C19.5 14.0575 19.0259 12.9129 18.182 12.069C17.3381 11.2251 16.1935 10.751 15 10.751Z">
@@ -215,7 +222,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('views.property.show', $data->slug)) }}" class="flex text-gray-950">
+                            <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('views.property.show', $data->slug)) }}"
+                                class="flex text-gray-950">
                                 <svg class="pointer-events-none w-6 h-6" fill="currentColor" viewBox="0 0 310 310">
                                     <path
                                         d="M302.973,57.388c-4.87,2.16-9.877,3.983-14.993,5.463c6.057-6.85,10.675-14.91,13.494-23.73
@@ -235,7 +243,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.instagram.com/sharer?url={{ urlencode(route('views.property.show', $data->slug)) }}" class="flex text-gray-950">
+                            <a href="https://www.instagram.com/sharer?url={{ urlencode(route('views.property.show', $data->slug)) }}"
+                                class="flex text-gray-950">
                                 <svg class="pointer-events-none w-6 h-6" fill="currentColor" viewBox="0 0 32 32">
                                     <path
                                         d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z">
@@ -244,9 +253,11 @@
                             </a>
                         </li>
                     </ul>
-                    <a shadow href="https://www.google.com/maps/search/?api=1&query={{ urlencode($data->map) }}" class="flex text-gray-950 ms-auto w-max bg-yellow-600 lg:mt-auto p-4 rounded-t-lg lg:rounded-r-2xl lg:rounded-tl-none">
+                    <a shadow href="https://www.google.com/maps/search/?api=1&query={{ urlencode($data->map) }}"
+                        class="flex text-gray-950 ms-auto w-max bg-yellow-600 lg:mt-auto p-4 rounded-t-lg lg:rounded-r-2xl lg:rounded-tl-none">
                         <svg class="pointer-events-none w-6 h-6" fill="currentColor" viewBox="0 96 960 960">
-                            <path d="M581 989q-22 5-38-8.5T527 942q0-14 10.5-26t24.5-17q25-6 48.5-16.5T656 859q15-10 31-6.5t26 13.5q16 16 15.5 38T709 936q-31 22-63 34t-65 19Zm192-185q-11-9-13-26t6-33q14-20 23.5-42.5T805 655q4-14 18.5-25.5T853 618q22 0 35 15.5t9 35.5q-7 36-21 69t-33 61q-10 19-31.5 21T773 804Zm79-270q-15 0-29-11t-19-27q-6-25-15-46.5T766 406q-7-16-4.5-33t14.5-28q16-16 35.5-13.5T843 351q18 32 31 63.5t22 66.5q5 21-8.5 37T852 534ZM389 989q-141-29-233.5-144T63 576q0-149 92-263.5T389 165q21-5 37 8.5t16 36.5q0 14-11 27t-26 18q-109 27-179.5 117.5T155 576q0 115 70.5 204T405 896q14 6 25.5 19.5T442 943q0 23-17 38t-36 8Zm267-695q-22-11-44.5-21.5T567 256q-15-5-26-19t-11-29q0-23 15-36t35-8q33 8 66.5 20.5T710 217q18 10 19.5 32T715 287q-11 11-27.5 13t-31.5-6ZM485 789q-9 0-17.5-2.5T453 778q-74-68-111-126t-37-110q0-82 54.5-132T485 360q70 0 123.5 50T662 542q0 52-35.5 110T515 778q-6 6-13.5 8.5T485 789Zm0-208q20 0 34-14t14-36q0-20-14-34.5T485 482q-22 0-36 14.5T435 531q0 22 14 36t36 14Z"/>
+                            <path
+                                d="M581 989q-22 5-38-8.5T527 942q0-14 10.5-26t24.5-17q25-6 48.5-16.5T656 859q15-10 31-6.5t26 13.5q16 16 15.5 38T709 936q-31 22-63 34t-65 19Zm192-185q-11-9-13-26t6-33q14-20 23.5-42.5T805 655q4-14 18.5-25.5T853 618q22 0 35 15.5t9 35.5q-7 36-21 69t-33 61q-10 19-31.5 21T773 804Zm79-270q-15 0-29-11t-19-27q-6-25-15-46.5T766 406q-7-16-4.5-33t14.5-28q16-16 35.5-13.5T843 351q18 32 31 63.5t22 66.5q5 21-8.5 37T852 534ZM389 989q-141-29-233.5-144T63 576q0-149 92-263.5T389 165q21-5 37 8.5t16 36.5q0 14-11 27t-26 18q-109 27-179.5 117.5T155 576q0 115 70.5 204T405 896q14 6 25.5 19.5T442 943q0 23-17 38t-36 8Zm267-695q-22-11-44.5-21.5T567 256q-15-5-26-19t-11-29q0-23 15-36t35-8q33 8 66.5 20.5T710 217q18 10 19.5 32T715 287q-11 11-27.5 13t-31.5-6ZM485 789q-9 0-17.5-2.5T453 778q-74-68-111-126t-37-110q0-82 54.5-132T485 360q70 0 123.5 50T662 542q0 52-35.5 110T515 778q-6 6-13.5 8.5T485 789Zm0-208q20 0 34-14t14-36q0-20-14-34.5T485 482q-22 0-36 14.5T435 531q0 22 14 36t36 14Z" />
                         </svg>
                     </a>
                 </div>
@@ -298,58 +309,76 @@
                     <div class="flex flex-col lg:flex-row gap-4 lg:gap-8 items-start">
                         <div class="w-full lg:w-0 flex-1 flex flex-col lg:flex-row gap-2 lg:gap-0">
                             <label for="inDate"
-                                class="text-gray-50 text-md lg:text-lg flex items-center lg:h-[48px] font-black lg:w-[160px]">موعد الدخول</label>
+                                class="text-gray-50 text-md lg:text-lg flex items-center lg:h-[48px] font-black lg:w-[160px]">موعد
+                                الدخول</label>
                             <div class="flex-1 rounded-md lg:rounded-xl bg-[#4c4643] text-gray-50">
-                                <input x-date type="date" id="inDate" name="startDate"
+                                <input x-date x-remove="{{ $data->dates }}" type="date" id="inDate"
+                                    name="startDate"
                                     class="appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block w-full h-[48px] py-2 px-4" />
                             </div>
                         </div>
                         <div class="w-full lg:w-0 flex-1 flex flex-col lg:flex-row gap-2 lg:gap-0">
                             <label for="outDate"
-                                class="text-gray-50 text-md lg:text-lg flex items-center lg:h-[48px] font-black lg:w-[160px]">موعد الخروج</label>
+                                class="text-gray-50 text-md lg:text-lg flex items-center lg:h-[48px] font-black lg:w-[160px]">موعد
+                                الخروج</label>
                             <div class="flex-1 rounded-md lg:rounded-xl bg-[#4c4643] text-gray-50">
-                                <input x-date type="date" id="outDate" name="endDate"
+                                <input x-date x-remove="{{ $data->dates }}" type="date" id="outDate"
+                                    name="endDate"
                                     class="appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block w-full h-[48px] py-2 px-4" />
                             </div>
                         </div>
                     </div>
                     <h3 class="text-gray-50 text-xl lg:text-2xl font-black mb-2 mt-4">الإضافات</h3>
                     <div class="flex flex-col gap-6 lg:gap-8">
-                         <div class="flex flex-col lg:flex-row gap-2 lg:gap-0 lg:flex-wrap items-start">
+                        <div class="flex flex-col lg:flex-row gap-2 lg:gap-0 lg:flex-wrap items-start">
                             <div class="flex-1 flex flex-col gap-2">
                                 <label class="flex gap-4 flex-wrap items-center">
-                                    <input x-toggle="#extra_0" x-properties="hidden" type="checkbox" name="icecream" value="icecream" class="sr-only peer">
-                                    <div class="relative w-[36px] h-[22px] bg-[#4c4643] rounded-md lg:rounded-xl peer peer-focus:outline peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-gray-50 after:rounded-sm lg:after:rounded-lg after:h-[14px] after:w-[14px] after:transition-all peer-checked:bg-yellow-600"></div>
+                                    <input x-toggle="#extra_0" x-properties="hidden" type="checkbox" name="icecream"
+                                        value="icecream" class="sr-only peer">
+                                    <div
+                                        class="relative w-[36px] h-[22px] bg-[#4c4643] rounded-md lg:rounded-xl peer peer-focus:outline peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-gray-50 after:rounded-sm lg:after:rounded-lg after:h-[14px] after:w-[14px] after:transition-all peer-checked:bg-yellow-600">
+                                    </div>
                                     <span class="text-gray-50 text-md lg:text-lg font-black">ماكينة الايس كريم</span>
                                 </label>
                                 <p class="text-md text-gray-200 flex flex-col">
-                                    <span>متوفر مع 70 قطعة بسكوت 2 كريمة ايس كريم فانيلا 2 كريمة ايس كريم كاكاو يشمل الباكج عربانة ايس كريم شامل التوصيل.</span>
-                                    <span>السعر: <span class="text-gray-50 font-black text-lg">{{ App\Models\Setting::first()->icecream }}</span> دينار لليوم</span>
+                                    <span>متوفر مع 70 قطعة بسكوت 2 كريمة ايس كريم فانيلا 2 كريمة ايس كريم كاكاو يشمل
+                                        الباكج عربانة ايس كريم شامل التوصيل.</span>
+                                    <span>السعر: <span
+                                            class="text-gray-50 font-black text-lg">{{ App\Models\Setting::first()->icecream }}</span>
+                                        دينار لليوم</span>
                                 </p>
                             </div>
                             <div id="extra_0" class="hidden w-max flex gap-4">
                                 <label for="icecream"
                                     class="text-gray-50 text-md lg:text-lg h-[48px] flex items-center font-black lg:w-max">الأيام</label>
-                                <input type="number" id="icecream" min="1" value="1" name="icecream_days"
+                                <input type="number" id="icecream" min="1" value="1"
+                                    name="icecream_days"
                                     class="appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block h-[48px] w-[80px] py-2 px-4 text-center" />
                             </div>
                         </div>
                         <div class="flex flex-col lg:flex-row gap-2 lg:gap-0 lg:flex-wrap items-start">
                             <div class="flex-1 flex flex-col gap-2">
                                 <label class="flex gap-4 flex-wrap items-center">
-                                    <input x-toggle="#extra_1" x-properties="hidden" type="checkbox" name="kayak" value="kayak" class="sr-only peer">
-                                    <div class="relative w-[36px] h-[22px] bg-[#4c4643] rounded-md lg:rounded-xl peer peer-focus:outline peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-gray-50 after:rounded-sm lg:after:rounded-lg after:h-[14px] after:w-[14px] after:transition-all peer-checked:bg-yellow-600"></div>
-                                    <span class="text-gray-50 text-md lg:text-lg font-black">قارب كاياك بدواسة واحدة</span>
+                                    <input x-toggle="#extra_1" x-properties="hidden" type="checkbox" name="kayak"
+                                        value="kayak" class="sr-only peer">
+                                    <div
+                                        class="relative w-[36px] h-[22px] bg-[#4c4643] rounded-md lg:rounded-xl peer peer-focus:outline peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-gray-50 after:rounded-sm lg:after:rounded-lg after:h-[14px] after:w-[14px] after:transition-all peer-checked:bg-yellow-600">
+                                    </div>
+                                    <span class="text-gray-50 text-md lg:text-lg font-black">قارب كاياك بدواسة
+                                        واحدة</span>
                                 </label>
                                 <p class="text-md text-gray-200 flex flex-col">
                                     <span></span>
-                                    <span>السعر: <span class="text-gray-50 font-black text-lg">{{ App\Models\Setting::first()->kayak }}</span> دينار لليوم</span>
+                                    <span>السعر: <span
+                                            class="text-gray-50 font-black text-lg">{{ App\Models\Setting::first()->kayak }}</span>
+                                        دينار لليوم</span>
                                 </p>
                             </div>
                             <div id="extra_1" class="hidden w-max flex gap-4">
                                 <label for="kayak"
                                     class="text-gray-50 text-md lg:text-lg h-[48px] flex items-center font-black lg:w-max">الأيام</label>
-                                <input type="number" id="kayak" min="1" value="1" name="kayak_days"
+                                <input type="number" id="kayak" min="1" value="1"
+                                    name="kayak_days"
                                     class="appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block h-[48px] w-[80px] py-2 px-4 text-center" />
                             </div>
                         </div>
@@ -393,7 +422,7 @@
                         </div>
                         <div class="flex-1 flex-col lg:flex-row gap-2 lg:gap-0 hidden lg:block"></div>
                     </div>
-                    <p class="text-yellow-600 text-md lg:text-xl font-black mt-2">
+                    <p class="text-yellow-600 text-sm lg:text-md font-black mt-2">
                         عند تأكيد الحجز سيتم إرسال رسالة عبر البريد الإلكتروني تحتوي على جميع التفاصيل
                     </p>
                     <button type="submit"

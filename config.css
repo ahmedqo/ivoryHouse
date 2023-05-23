@@ -41,7 +41,7 @@
 }
 
 [background-image] {
-    background-image: linear-gradient(to top, rgb(3 7 18) 100px, rgb(3 7 18 / .2)), url(/img/bg-main.png);
+    background-image: linear-gradient(to top, rgb(3 7 18 / .96) 100px, rgb(3 7 18 / .2)), url(/img/bg-main.png);
     background-position: center;
     background-size: cover;
 }

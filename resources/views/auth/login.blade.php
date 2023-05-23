@@ -6,12 +6,12 @@
         class="relative w-full mx-auto flex flex-col bg-gray-950 gap-4 border-2 border-yellow-600 rounded-lg lg:rounded-2xl p-4 pb-10">
         @csrf
         <div class="flex flex-col gap-2">
-            <label for="email" class="text-gray-50 text-lg font-black">البريد الإلكتروني</label>
+            <label for="email" class="text-gray-50 text-md font-black">البريد الإلكتروني</label>
             <input type="email" id="email" name="email"
                 class="appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block w-full h-[48px] py-2 px-4" />
         </div>
         <div class="flex flex-col gap-2">
-            <label for="password" class="text-gray-50 text-lg font-black">الرمز السري</label>
+            <label for="password" class="text-gray-50 text-md font-black">الرمز السري</label>
             <div class="rounded-lg lg:rounded-2xl bg-[#4c4643] text-gray-50">
                 <input x-password type="password" id="password" name="password"
                     class="appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block w-full h-[48px] py-2 px-4" />

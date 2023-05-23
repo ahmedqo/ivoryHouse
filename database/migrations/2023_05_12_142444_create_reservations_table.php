@@ -23,7 +23,7 @@ class CreateReservationsTable extends Migration
             $table->date('startDate');
             $table->date('endDate');
             $table->json('extra')->nullable();
-            $table->integer('status')->default(1);
+            $table->string('status')->default(1);
             $table->timestamps();
 
             $table->foreign('property')->references('id')->on('properties')->onUpdate('cascade');

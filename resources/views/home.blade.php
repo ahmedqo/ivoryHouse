@@ -16,16 +16,16 @@
                 <li>
                     <img src="{{ asset('img/bg-1.png') }}"class="w-full h-full object-cover" />
                 </li>
-                 <li>
+                <li>
                     <img src="{{ asset('img/bg-2.png') }}"class="w-full h-full object-cover" />
                 </li>
-                 <li>
+                <li>
                     <img src="{{ asset('img/bg-3.png') }}"class="w-full h-full object-cover" />
                 </li>
-                 <li>
+                <li>
                     <img src="{{ asset('img/bg-4.png') }}"class="w-full h-full object-cover" />
                 </li>
-                 <li>
+                <li>
                     <img src="{{ asset('img/bg-5.png') }}"class="w-full h-full object-cover" />
                 </li>
             </ul>
@@ -111,7 +111,8 @@
                     <div class="flex-1 relative">
                         <svg class="pointer-events-none w-6 h-6 text-gray-950 absolute top-1/2 -translate-y-1/2 left-4"
                             fill="currentColor" viewBox="0 96 960 960">
-                            <path d="M479.983 1020Q335 1020 244 977.575T153 865q0-35 31-68.5t86-55.5l42 84q-19 5-39 16.5T241 864q19.29 26.8 92.145 45.4Q406 928 481.2 928t147.533-18.6Q701.067 890.8 721 864q-12-10-32.5-22T651 825l41-83q56 22 86 55t30 68q0 70.15-91.517 112.575Q624.965 1020 479.983 1020ZM480 882q-17.586 0-30.793-9T432 847q-23-67-60-116.5T301 634q-37.861-48.058-63.93-99.529Q211 483 211 413q0-113.387 77.024-192.693Q365.047 141 480.024 141 595 141 673 220.307 751 299.613 751 413q0 70-27.5 121.5T661 634q-37 47-73.5 96.5T529 847q-5 17-18.207 26T480 882Zm.25-408Q505 474 524 456t19-42.75q0-24.75-19.25-44t-44-19.25q-24.75 0-43.25 19.25t-18.5 44Q418 438 436.75 456t43.5 18Z"/>
+                            <path
+                                d="M479.983 1020Q335 1020 244 977.575T153 865q0-35 31-68.5t86-55.5l42 84q-19 5-39 16.5T241 864q19.29 26.8 92.145 45.4Q406 928 481.2 928t147.533-18.6Q701.067 890.8 721 864q-12-10-32.5-22T651 825l41-83q56 22 86 55t30 68q0 70.15-91.517 112.575Q624.965 1020 479.983 1020ZM480 882q-17.586 0-30.793-9T432 847q-23-67-60-116.5T301 634q-37.861-48.058-63.93-99.529Q211 483 211 413q0-113.387 77.024-192.693Q365.047 141 480.024 141 595 141 673 220.307 751 299.613 751 413q0 70-27.5 121.5T661 634q-37 47-73.5 96.5T529 847q-5 17-18.207 26T480 882Zm.25-408Q505 474 524 456t19-42.75q0-24.75-19.25-44t-44-19.25q-24.75 0-43.25 19.25t-18.5 44Q418 438 436.75 456t43.5 18Z" />
                         </svg>
                         <input id="address" type="text" placeholder="المكان" name="address"
                             class="flex-1 appearance-none bg-gray-50 text-gray-950 text-lg rounded-md lg:rounded-xl block w-full h-[48px] py-2 px-4 pl-12" />
@@ -144,7 +145,7 @@
                                     class="absolute inset-2 bg-gray-950 bg-opacity-50 rounded-md lg:rounded-xl rounded-br-none lg:rounded-br-none pointer-events-none z-[1]">
                                 </div>
                                 <div
-                                    class="absolute w-max left-1/2 rounded-b-xl -translate-x-1/2 bg-yellow-600 px-2 py-1 z-[1]">
+                                    class="absolute w-max left-1/2 rounded-b-md -translate-x-1/2 bg-yellow-600 px-2 py-1 z-[1]">
                                     محجوز
                                 </div>
                             @endif
@@ -252,12 +253,12 @@
                     <div
                         class="aspect-video p-2 rounded-lg lg:rounded-2xl rounded-br-none lg:rounded-br-none border border-yellow-600 relative">
                         ${row.reserved ? `<div
-                                                                                                                                                            class="absolute inset-2 bg-gray-950 bg-opacity-50 rounded-lg lg:rounded-2xl rounded-br-none lg:rounded-br-none pointer-events-none z-[1]">
-                                                                                                                                                        </div>
-                                                                                                                                                        <div
-                                                                                                                                                            class="absolute w-max left-1/2 rounded-b-xl -translate-x-1/2 bg-yellow-600 px-2 py-1 z-[1]">
-                                                                                                                                                            محجوز
-                                                                                                                                                        </div>` : ``}
+                                            class="absolute inset-2 bg-gray-950 bg-opacity-50 rounded-md lg:rounded-xl rounded-br-none lg:rounded-br-none pointer-events-none z-[1]">
+                                        </div>
+                                        <div
+                                            class="absolute w-max left-1/2 rounded-b-md -translate-x-1/2 bg-yellow-600 px-2 py-1 z-[1]">
+                                            محجوز
+                                        </div>` : ``}
                         <div
                             class="w-full h-full overflow-hidden rounded-md lg:rounded-xl rounded-br-none lg:rounded-br-none">
                             <img src="${image}"
