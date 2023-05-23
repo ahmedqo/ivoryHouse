@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Setting;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -27,6 +28,11 @@ class DatabaseSeeder extends Seeder
             'zipcode' => '000000',
             'birthDate' => '2000-01-01',
             'gender' => 'male',
+        ]);
+        Setting::create([
+            'assurance' => 1,
+            'icecream' => 1,
+            'kayak' => 1,
         ]);
     }
 }

@@ -49,7 +49,7 @@ class PropertyController extends Controller
         $endDate = $request->endDate ?? now();
 
         $properties = Property::where(DB::raw("CONCAT(address, ' ', state, ' ', city, ' ', zipcode)"), 'like', "%$address%")->get();
-        
+
         foreach ($properties as $property) {
             $exist = Reservation::where('property', $property->id)->where('status', 1)
                 ->where(function ($query) use ($startDate, $endDate) {
@@ -99,9 +99,9 @@ class PropertyController extends Controller
             'price' => ['required', 'numeric'],
             'area' => ['required', 'numeric'],
             'rooms' => ['required', 'integer'],
-            'kitchen' => ['required', 'integer'],
-            'garage' => ['required', 'integer'],
-            'garden' => ['required', 'integer'],
+            'kitchen' => ['required', 'string'],
+            'garage' => ['required', 'string'],
+            'garden' => ['required', 'string'],
             'map' => ['required', 'string'],
             'address' => ['required', 'string'],
             'state' => ['required', 'string'],
@@ -157,9 +157,9 @@ class PropertyController extends Controller
             'price' => ['required', 'numeric'],
             'area' => ['required', 'numeric'],
             'rooms' => ['required', 'integer'],
-            'kitchen' => ['required', 'integer'],
-            'garage' => ['required', 'integer'],
-            'garden' => ['required', 'integer'],
+            'kitchen' => ['required', 'string'],
+            'garage' => ['required', 'string'],
+            'garden' => ['required', 'string'],
             'map' => ['required', 'string'],
             'address' => ['required', 'string'],
             'state' => ['required', 'string'],
