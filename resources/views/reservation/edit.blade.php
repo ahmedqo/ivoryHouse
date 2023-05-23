@@ -1,0 +1,175 @@
+@extends('communs.base')
+@section('title', 'تعديل الحجز ' . $data->id)
+
+@section('content')
+    <div class="w-full bg-gray-950 rounded-lg lg:rounded-2xl -mt-12 overflow-hidden">
+        <div class="p-4 flex items-center justify-between gap-4">
+            <h1 class="font-black text-gray-50 text-xl">
+                تعديل الحجز {{ $data->id }}
+            </h1>
+        </div>
+    </div>
+
+    <div class="w-full bg-gray-950 p-4 rounded-lg lg:rounded-2xl">
+        <form action="{{ route('actions.reservations.edit', $data->id) }}" method="POST" class="w-full flex flex-col gap-4">
+            @csrf
+            <div class="grid grid-rows-1 grid-cols-1 lg:grid-cols-2 gap-4">
+                <div class="w-full flex flex-col gap-2">
+                    <label for="property" class="text-gray-50 text-md font-black">العقار</label>
+                    <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
+                        <select x-select id="property" name="property">
+                            @foreach ($properties as $property)
+                                <option value="{{ $property->id }}"
+                                    @if ($property->id == $data->property) selected @endif>
+                                    {{ $property->title }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="w-full flex flex-col gap-2">
+                    <label for="status" class="text-gray-50 text-md font-black">الحالة</label>
+                    <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
+                        <select x-select id="status" name="status">
+                            <option value="1" @if (intval($data->status) > 0) selected @endif>محجوز</option>
+                            <option value="-1" @if (intval($data->status) < 0) selected @endif>ملغى</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-rows-1 grid-cols-1 lg:grid-cols-2 gap-4">
+                <div class="w-full flex flex-col gap-2">
+                    <label for="name" class="text-gray-50 text-md font-black">الاسم الكامل</label>
+                    <div class="relative">
+                        <input
+                            class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
+                            type="text" value="{{ $data->name }}" id="name" name="name" />
+                    </div>
+                </div>
+                <div class="w-full flex flex-col gap-2">
+                    <label for="nationality" class="text-gray-50 text-md font-black">الجنسية</label>
+                    <div class="relative">
+                        <input
+                            class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
+                            type="text" value="{{ $data->nationality }}" id="nationality" name="nationality" />
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-rows-1 grid-cols-1 lg:grid-cols-2 gap-4">
+                <div class="w-full flex flex-col gap-2">
+                    <label for="email" class="text-gray-50 text-md font-black">البريد الإلكتروني</label>
+                    <div class="relative">
+                        <input
+                            class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
+                            value="{{ $data->email }}" id="email" name="email" type="email" />
+                    </div>
+                </div>
+                <div class="w-full flex flex-col gap-2">
+                    <label for="phone" class="text-gray-50 text-md font-black">الهاتف</label>
+                    <div class="relative">
+                        <input
+                            class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
+                            value="{{ $data->phone }}" id="phone" name="phone" type="tel" />
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-rows-1 grid-cols-1 lg:grid-cols-2 gap-4">
+                <div class="w-full flex flex-col gap-2">
+                    <label for="startDate" class="text-gray-50 text-md font-black">موعد الدخول</label>
+                    <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
+                        <input x-date
+                            class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
+                            value="{{ $data->startDate }}" id="startDate" name="startDate" />
+                    </div>
+                </div>
+                <div class="w-full flex flex-col gap-2">
+                    <label for="endDate" class="text-gray-50 text-md font-black">موعد الخروج</label>
+                    <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
+                        <input x-date
+                            class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
+                            value="{{ $data->endDate }}" id="endDate" name="endDate" />
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-rows-1 grid-cols-2 lg:grid-cols-6 gap-4">
+                <div class="w-full flex flex-col gap-2">
+                    <label for="icecream" class="text-gray-50 text-md font-black">ماكينة الايس كريم</label>
+                    <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
+                        <select x-select id="icecream" name="icecream">
+                            <option value="1" @if (count($data->icecream)) selected @endif>نعم</option>
+                            <option value="0" @if (!count($data->icecream)) selected @endif>لا</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="w-full flex flex-col gap-2">
+                    <label for="icecream_days" class="text-gray-50 text-md font-black">الأيام</label>
+                    <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
+                        <input
+                            class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
+                            value="{{ count($data->icecream) > 0 ? $data->icecream[0]->days : 0 }}" id="icecream_days" name="icecream_days" type="number" />
+                    </div>
+                </div>
+                <div class="w-full flex flex-col gap-2 col-span-2 lg:col-span-4">
+                    <label for="icecream_description" class="text-gray-50 text-md font-black">ملاحظة</label>
+                    <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
+                        <input
+                            class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
+                            value="{{ count($data->icecream) > 0 ? $data->icecream[0]->description : '' }}" id="icecream_description" name="icecream_description" type="text" />
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-rows-1 grid-cols-2 lg:grid-cols-6 gap-4">
+                <div class="w-full flex flex-col gap-2">
+                    <label for="kayak" class="text-gray-50 text-md font-black">قارب كاياك</label>
+                    <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
+                        <select x-select id="kayak" name="kayak">
+                            <option value="1" @if (count($data->kayak)) selected @endif>نعم</option>
+                            <option value="0" @if (!count($data->kayak)) selected @endif>لا</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="w-full flex flex-col gap-2">
+                    <label for="kayak_days" class="text-gray-50 text-md font-black">الأيام</label>
+                    <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
+                        <input
+                            class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
+                            value="{{ count($data->kayak) ? $data->kayak[0]->days : 0 }}" id="kayak_days" name="kayak_days" type="number" />
+                    </div>
+                </div>
+                <div class="w-full flex flex-col gap-2 col-span-2 lg:col-span-4">
+                    <label for="kayak_description" class="text-gray-50 text-md font-black">ملاحظة</label>
+                    <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
+                        <input
+                            class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
+                            value="{{ count($data->kayak) ? $data->kayak[0]->description : '' }}" id="kayak_description" name="kayak_description" type="text" />
+                    </div>
+                </div>
+            </div>
+            <div class="w-full"></div>
+            <div class="w-full">
+                <button type="submit"
+                    class="appearance-none w-max h-[48px] text-lg flex items-center justify-center rounded-md lg:rounded-xl font-black px-10 text-gray-950 outline-none bg-yellow-600 hover:bg-yellow-400 focus:bg-yellow-400">
+                    <span>حفظ</span>
+                </button>
+            </div>
+        </form>
+    </div>
+@endsection
+
+@section('script')
+    <script>
+        Select.option({
+            style: {
+                background: "#ca8a04",
+            }
+        });
+        DatePicker.option({
+            style: {
+                background: "#ca8a04",
+                current: "#facc15",
+            },
+        });
+        new Select();
+        new DatePicker();
+    </script>
+@endsection

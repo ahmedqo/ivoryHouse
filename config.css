@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap');
+::-webkit-scrollbar-track {
+    border-radius: 9999rem;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar {
+    width: .25rem;
+    height: .25rem;
+    background-color: #4c4643;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: .2rem;
+    background-color: #ca8a04;
+}
+
+.hover-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.hover-scrollbar:hover::-webkit-scrollbar {
+    display: unset;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+[contenteditable]:empty::before {
+    color: grey;
+}
+
+[contenteditable][placeholder]:not([placeholder=""]):empty::before {
+    content: attr(placeholder);
+}
+
+[background-image] {
+    background-image: linear-gradient(to top, rgb(3 7 18) 100px, rgb(3 7 18 / .2)), url(/img/bg-main.png);
+    background-position: center;
+    background-size: cover;
+}
+
+[shadow] {
+    box-shadow: rgb(25 25 25 / 30%) 0px 0px 10px 5px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+@media (min-width: 1024px) {
+    .lg\:min-w-100 {
+        min-width: calc(100% - 260px);
+    }
+}
+
+* {
+    font-family: 'Cairo', sans-serif;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
