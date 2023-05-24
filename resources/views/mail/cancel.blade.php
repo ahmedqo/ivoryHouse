@@ -21,7 +21,8 @@
         <tr>
             <td>
                 <div style="background-color: #111827; padding: 64px 16px;">
-                    <img src="{{ asset('img/logo.png') }}" style="display:block;width: 100px; margin: 0 auto 20px auto" />
+                    <img src="{{ asset('img/logo.png') }}"
+                        style="display:block;width: 100px; margin: 0 auto 20px auto" />
                     <section
                         style="
 								background-color: #030712;
@@ -45,7 +46,7 @@
                             لقد تم إلغاء حجزك.
                         </h1>
                         <img alt="{{ $data['title'] }}" src="{{ asset('storage/files/' . $data['image']) }}"
-                            style="width: 100%; background-color: #f9fafb; display: block; object-fit: cover; aspect-ratio: 16/9; display: block;" />
+                            style="width: 100%; background-color: #111827; object-fit: contain; display: block; height: 300px" />
                         <p style="margin: 0; font-size: 20px; padding: 16px 0;">
                             {{ $data['title'] }}
                         </p>
@@ -92,24 +93,33 @@
                                 </td>
                             </tr>
                             @php
-                                $icecream = array_filter($data['extra'], function ($ext) {
-                                    return $ext->name === 'icecream';
-                                }, 1);
-                                $kayak = array_filter($data['extra'], function ($ext) {
-                                    return $ext->name === 'kayak';
-                                }, 1);
+                                $icecream = array_filter(
+                                    $data['extra'],
+                                    function ($ext) {
+                                        return $ext->name === 'icecream';
+                                    },
+                                    1,
+                                );
+                                $kayak = array_filter(
+                                    $data['extra'],
+                                    function ($ext) {
+                                        return $ext->name === 'kayak';
+                                    },
+                                    1,
+                                );
                             @endphp
-                            @if(count($icecream))
+                            @if (count($icecream))
                                 <tr>
                                     <td style="padding-bottom: 10px;">
-                                        <div style="font-size: 14px;">ماكينة الايس كريم لمدة {{ $icecream[0]->days }} أيام</div>
+                                        <div style="font-size: 14px;">ماكينة الايس كريم لمدة {{ $icecream[0]->days }}
+                                            أيام</div>
                                     </td>
                                     <td style="font-size: 14px; text-align: left; padding-bottom: 10px;">
                                         {{ $icecream[0]->total }} دينار
                                     </td>
                                 </tr>
                             @endif
-                            @if(count($kayak))
+                            @if (count($kayak))
                                 <tr>
                                     <td style="padding-bottom: 10px;">
                                         <div style="font-size: 14px;">قارب كاياك لمدة {{ $kayak[0]->days }} أيام</div>
@@ -140,10 +150,12 @@
                                     <div style="font-size: 20px;">المبلغ الإجمالي</div>
                                 </td>
                                 <td style="text-align: left;">
-                                    <div style="font-size: 20px;">{{ $data['price'] + $data['ext_price'] + App\Models\Setting::first()->assurance }} دينار</div>
+                                    <div style="font-size: 20px;">
+                                        {{ $data['price'] + $data['ext_price'] + App\Models\Setting::first()->assurance }}
+                                        دينار</div>
                                 </td>
                             </tr>
-                            @if(strlen(App\Models\Setting::first()->terms))
+                            @if (strlen(App\Models\Setting::first()->terms))
                                 <tr>
                                     <td colspan="2" style="padding: 10px 0;">
                                         <div style="width: 100%; padding: 0.5px 0; background-color: #ca8a04;"></div>
@@ -162,7 +174,7 @@
                             @endif
                         </table>
                     </section>
-                </main>
+                    </main>
             </td>
         </tr>
     </table>
