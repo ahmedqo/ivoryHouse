@@ -20,7 +20,7 @@
     <table dir="rtl" style="width: 100%;">
         <tr>
             <td>
-                <main style="background-color: #111827; padding: 64px 16px;">
+                <div style="background-color: #111827; padding: 64px 16px;">
                     <img src="{{ asset('img/logo.png') }}" style="display:block;width: 100px; margin: 0 auto 20px auto" />
                     <section
                         style="
