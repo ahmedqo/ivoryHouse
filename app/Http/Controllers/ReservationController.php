@@ -90,7 +90,7 @@ class ReservationController extends Controller
             'reservation' => $current,
         ]);
         return Redirect::route('views.reservations.index')->with([
-            'message' => 'تم الإلغاء بنجاح',
+            'message' => 'تم الحجز بنجاح',
             'type' => 'success'
         ]);
     }
