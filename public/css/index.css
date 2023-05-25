@@ -1901,6 +1901,11 @@ video {
   width: 14px;
 }
 
+.after\:rounded-lg::after{
+  content: var(--tw-content);
+  border-radius: 0.5rem;
+}
+
 .after\:rounded-sm::after{
   content: var(--tw-content);
   border-radius: 0.125rem;
@@ -1918,30 +1923,9 @@ video {
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
 
-.after\:bg-opacity-20::after{
-  content: var(--tw-content);
-  --tw-bg-opacity: 0.2;
-}
-
-.after\:bg-opacity-40::after{
-  content: var(--tw-content);
-  --tw-bg-opacity: 0.4;
-}
-
 .after\:bg-opacity-70::after{
   content: var(--tw-content);
   --tw-bg-opacity: 0.7;
-}
-
-.after\:blur-sm::after{
-  content: var(--tw-content);
-  --tw-blur: blur(4px);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.after\:filter::after{
-  content: var(--tw-content);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 .after\:transition-all::after{
