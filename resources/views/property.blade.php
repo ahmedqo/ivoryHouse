@@ -358,7 +358,7 @@
                                     <input x-toggle="#extra_0" x-properties="hidden" type="checkbox" name="icecream"
                                         value="icecream" class="sr-only peer">
                                     <div
-                                        class="relative w-[36px] h-[22px] bg-[#4c4643] rounded-md lg:rounded-xl peer peer-focus:outline peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-gray-50 after:rounded-sm lg:after:rounded-lg after:h-[14px] after:w-[14px] after:transition-all peer-checked:bg-yellow-600">
+                                        class="relative w-[36px] h-[22px] bg-[#4c4643] rounded-xl peer peer-focus:outline peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-gray-50 after:rounded-lg after:h-[14px] after:w-[14px] after:transition-all peer-checked:bg-yellow-600">
                                     </div>
                                     <span class="text-gray-50 text-md lg:text-lg font-black">ماكينة الايس كريم</span>
                                 </label>
@@ -384,7 +384,7 @@
                                     <input x-toggle="#extra_1" x-properties="hidden" type="checkbox" name="kayak"
                                         value="kayak" class="sr-only peer">
                                     <div
-                                        class="relative w-[36px] h-[22px] bg-[#4c4643] rounded-md lg:rounded-xl peer peer-focus:outline peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-gray-50 after:rounded-sm lg:after:rounded-lg after:h-[14px] after:w-[14px] after:transition-all peer-checked:bg-yellow-600">
+                                        class="relative w-[36px] h-[22px] bg-[#4c4643] rounded-xl peer peer-focus:outline peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-gray-50 after:rounded-lg after:h-[14px] after:w-[14px] after:transition-all peer-checked:bg-yellow-600">
                                     </div>
                                     <span class="text-gray-50 text-md lg:text-lg font-black">قارب كاياك بدواسة
                                         واحدة</span>
