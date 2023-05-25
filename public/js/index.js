@@ -837,7 +837,7 @@ Select._template = (placeholder) => /*html*/ `
         <svg class="block w-6 h-6 pointer-events-none absolute left-4 top-1/2 -translate-y-1/2" fill="currentcolor" viewBox="0 0 48 48">
             <path d="M24 31.8 10.9 18.7 14.2 15.45 24 25.35 33.85 15.5 37.1 18.75Z" />
         </svg>
-        <div x-wrap class="fixed items-center justify-center p-4 inset-0 bg-gray-950 bg-opacity-40 z-20 lg:z-10 lg:absolute lg:top-full lg:inset-auto lg:p-0 lg:w-full lg:rounded-lg hidden">
+        <div x-wrap class="fixed items-center justify-center p-4 inset-0 bg-gray-900 bg-opacity-80 z-20 lg:z-10 lg:absolute lg:top-full lg:inset-auto lg:p-0 lg:w-full lg:rounded-lg hidden">
             <button class="w-10 h-10 absolute top-4 left-4 text-gray-50 rounded-full lg:hidden flex items-center justify-center outline-none hover:bg-gray-50 hover:bg-opacity-10 focus:bg-gray-50 focus:bg-opacity-10">
                 <svg class="block w-6 h-6 pointer-events-none" fill="currentcolor" viewBox="0 96 960 960">
                     <path d="M480 640 282 838q-14 14-32.5 14T218 838q-14-13-14-31.5t14-31.5l198-199-198-198q-13-13-13-32t13-32q12-13 31-13t33 13l198 199 199-200q13-13 31.5-13t32.5 13q13 14 13 32.5T743 377L544 575l198 199q14 14 14 32.5T742 838q-13 14-32 14t-31-14L480 640Z"/>
@@ -1055,7 +1055,7 @@ DatePicker._template = (placeholder) => /*html*/ `
                 <path d="M24 28.25q-.9 0-1.575-.65-.675-.65-.675-1.6 0-.9.675-1.575.675-.675 1.625-.675.9 0 1.55.65t.65 1.6q0 .9-.65 1.575-.65.675-1.6.675Zm-8 0q-.9 0-1.575-.65-.675-.65-.675-1.6 0-.9.65-1.575.65-.675 1.6-.675.9 0 1.575.65.675.65.675 1.6 0 .9-.65 1.575-.65.675-1.6.675Zm15.95 0q-.85 0-1.525-.65-.675-.65-.675-1.6 0-.9.675-1.575.675-.675 1.575-.675.9 0 1.575.65.675.65.675 1.6 0 .9-.675 1.575-.675.675-1.625.675Zm-7.95 8q-.9 0-1.575-.675Q21.75 34.9 21.75 34q0-.9.675-1.575.675-.675 1.625-.675.9 0 1.55.675t.65 1.625q0 .85-.65 1.525-.65.675-1.6.675Zm-8 0q-.9 0-1.575-.675Q13.75 34.9 13.75 34q0-.9.65-1.575.65-.675 1.6-.675.9 0 1.575.675.675.675.675 1.625 0 .85-.65 1.525-.65.675-1.6.675Zm15.95 0q-.85 0-1.525-.675Q29.75 34.9 29.75 34q0-.9.675-1.575.675-.675 1.575-.675.9 0 1.575.675.675.675.675 1.625 0 .85-.675 1.525-.675.675-1.625.675ZM9.5 45.1q-1.85 0-3.2-1.375T4.95 40.55V10.5q0-1.9 1.35-3.25T9.5 5.9h2.95V4.8q0-.7.625-1.325t1.375-.625q.85 0 1.4.625.55.625.55 1.325v1.1h15.2V4.8q0-.7.575-1.325t1.375-.625q.85 0 1.425.625.575.625.575 1.325v1.1h2.95q1.9 0 3.25 1.35t1.35 3.25v30.05q0 1.8-1.35 3.175Q40.4 45.1 38.5 45.1Zm0-4.55h29V19.6h-29v20.95Z"/>
             </svg>
         </span>
-        <div class="fixed items-center justify-center p-4 inset-0 bg-gray-950 bg-opacity-40 z-20 lg:z-10 lg:absolute lg:top-full lg:inset-auto lg:p-0 lg:w-full lg:rounded-lg hidden">
+        <div class="fixed items-center justify-center p-4 inset-0 bg-gray-900 bg-opacity-80 z-20 lg:z-10 lg:absolute lg:top-full lg:inset-auto lg:p-0 lg:w-full lg:rounded-lg hidden">
             <button class="w-10 h-10 absolute top-4 left-4 text-gray-50 rounded-full lg:hidden flex items-center justify-center outline-none hover:bg-gray-50 hover:bg-opacity-10 focus:bg-gray-50 focus:bg-opacity-10">
                 <svg class="block w-6 h-6 pointer-events-none" fill="currentcolor" viewBox="0 96 960 960">
                     <path d="M480 640 282 838q-14 14-32.5 14T218 838q-14-13-14-31.5t14-31.5l198-199-198-198q-13-13-13-32t13-32q12-13 31-13t33 13l198 199 199-200q13-13 31.5-13t32.5 13q13 14 13 32.5T743 377L544 575l198 199q14 14 14 32.5T742 838q-13 14-32 14t-31-14L480 640Z"/>
