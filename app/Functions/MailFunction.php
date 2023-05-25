@@ -44,7 +44,7 @@ class MailFunction
         return true;
     }
 
-    public static function reservation($email, $data)
+    public static function _data($data)
     {
         $days = [
             'Monday' => 'الاثنين',
@@ -90,10 +90,10 @@ class MailFunction
         $extra = array_reduce(json_decode($data['reservation']->extra), function ($carry, $ext) {
             return $carry + $ext->total;
         });
-        $price = (($startDate->diffInDays($endDate) + 1) * $property->price);
+        $price = $startDate->diffInDays($endDate) * $property->price;
         $image = FileFunction::all($data['id'])[0]->name;
 
-        $mail = new ReservationMail([
+        return [
             'title' => $property->title,
             'map' => $property->map,
             'address' => $property->address . ', ' . $property->city . ', ' . $property->state . ', ' . $property->zipcode,
@@ -101,9 +101,14 @@ class MailFunction
             'endDate' => $getDate($endDate->format('l d, M Y')),
             'price' => $price,
             'image' => $image,
-            'ext_price' => + $extra,
+            'ext_price' => +$extra,
             'extra' => json_decode($data['reservation']->extra),
-        ]);
+        ];
+    }
+
+    public static function reservation($email, $data)
+    {
+        $mail = new ReservationMail(MailFunction::_data($data));
 
         Mail::to($email)->send($mail);
         return true;
@@ -111,64 +116,7 @@ class MailFunction
 
     public static function cancel($email, $data)
     {
-        $days = [
-            'Monday' => 'الاثنين',
-            'Tuesday' => 'الثلاثاء',
-            'Wednesday' => 'الأربعاء',
-            'Thursday' => 'الخميس',
-            'Friday' => 'الجمعة',
-            'Saturday' => 'السبت',
-            'Sunday' => 'الأحد',
-        ];
-        $months = [
-            'January' => 'يناير',
-            'February' => 'فبراير',
-            'March' => 'مارس',
-            'April' => 'أبريل',
-            'May' => 'مايو',
-            'June' => 'يونيو',
-            'July' => 'يوليو',
-            'August' => 'أغسطس',
-            'September' => 'سبتمبر',
-            'October' => 'أكتوبر',
-            'November' => 'نوفمبر',
-            'December' => 'ديسمبر',
-        ];
-
-        $pattern_1 = '/\b(' . implode('|', array_keys($days)) . ')\b/iu';
-        $pattern_2 = '/\b(' . implode('|', array_keys($months)) . ')\b/iu';
-        $replacement_1 = function ($matches) use ($days) {
-            return $days[$matches[1]];
-        };
-        $replacement_2 = function ($matches) use ($months) {
-            return $months[$matches[1]];
-        };
-
-        $getDate = function ($date) use ($replacement_1, $replacement_2, $pattern_1, $pattern_2) {
-            $str = preg_replace_callback($pattern_1, $replacement_1, $date);
-            return preg_replace_callback($pattern_2, $replacement_2, $str);
-        };
-
-        $property = Property::findorfail($data['id']);
-        $startDate = Carbon::parse($data['reservation']->startDate);
-        $endDate = Carbon::parse($data['reservation']->endDate);
-        $extra = array_reduce(json_decode($data['reservation']->extra), function ($carry, $ext) {
-            return $carry + $ext->total;
-        });
-        $price = (($startDate->diffInDays($endDate) + 1) * $property->price);
-        $image = FileFunction::all($data['id'])[0]->name;
-
-        $mail = new CancelMail([
-            'title' => $property->title,
-            'map' => $property->map,
-            'address' => $property->address . ', ' . $property->city . ', ' . $property->state . ', ' . $property->zipcode,
-            'startDate' =>  $getDate($startDate->format('l d, M Y')),
-            'endDate' => $getDate($endDate->format('l d, M Y')),
-            'price' => $price,
-            'image' => $image,
-            'ext_price' => + $extra,
-            'extra' => json_decode($data['reservation']->extra),
-        ]);
+        $mail = new CancelMail(MailFunction::_data($data));
 
         Mail::to($email)->send($mail);
         return true;

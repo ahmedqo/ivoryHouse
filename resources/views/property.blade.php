@@ -191,7 +191,7 @@
                 <div class="w-full flex flex-col gap-2">
                     <h3 class="text-gray-50 text-xl font-black mb-2">الوصف:</h3>
                     <p class="text-md lg:text-lg text-gray-50">
-                        {{ $data->description }}
+                        {!! nl2br($data->description) !!}
                     </p>
                 </div>
             </div>
@@ -273,7 +273,7 @@
             <div class="container mx-auto p-4">
                 <h2 class="text-gray-50 text-3xl lg:text-4xl font-black mb-10 lg:mb-16 text-center">إحجز الآن</h2>
                 <form
-                    onsubmit="return validateForm(this, ['name', 'nationality', 'email', 'phone', 'startDate', 'endDate'])"action="{{ route('actions.reservations.create', $data->id) }}"
+                    onsubmit="return validateForm(this, ['name', 'nationality', 'email', 'phone', 'startDate', 'endDate', 'socialNumber', 'address'])"action="{{ route('actions.reservations.create', $data->id) }}"
                     method="POST"
                     class="relative w-full flex flex-col gap-4 lg:gap-8 border-2 border-yellow-600 rounded-lg lg:rounded-2xl p-4 pb-12 lg:p-8 lg:pb-16">
                     @csrf
@@ -328,6 +328,21 @@
                                     name="endDate"
                                     class="appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block w-full h-[48px] py-2 px-4" />
                             </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col lg:flex-row gap-4 lg:gap-8 items-start">
+                        <div class="w-full lg:w-0 flex-1 flex flex-col lg:flex-row gap-2 lg:gap-0">
+                            <label for="socialNumber"
+                                class="text-gray-50 text-md lg:text-lg flex items-center lg:h-[48px] font-black lg:w-[160px]">الرقم
+                                المدني</label>
+                            <input type="text" id="socialNumber" name="socialNumber"
+                                class="flex-1 appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block w-full h-[48px] py-2 px-4" />
+                        </div>
+                        <div class="w-full lg:w-0 flex-1 flex flex-col lg:flex-row gap-2 lg:gap-0">
+                            <label for="address"
+                                class="text-gray-50 text-md lg:text-lg flex items-center lg:h-[48px] font-black lg:w-[160px]">العنوان</label>
+                            <input type="text" id="address" name="address"
+                                class="flex-1 appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block w-full h-[48px] py-2 px-4" />
                         </div>
                     </div>
                     <h3 class="text-gray-50 text-xl lg:text-2xl font-black mb-2 mt-4">الإضافات</h3>

@@ -22,6 +22,8 @@ class CreateReservationsTable extends Migration
             $table->string('phone');
             $table->date('startDate');
             $table->date('endDate');
+            $table->string('socialNumber');
+            $table->string('address');
             $table->json('extra')->nullable();
             $table->string('status')->default(1);
             $table->timestamps();

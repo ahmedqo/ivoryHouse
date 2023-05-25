@@ -103,8 +103,10 @@ class ReservationController extends Controller
             'nationality' => ['required', 'string'],
             'email' => ['required', 'email'],
             'phone' => ['required', 'string'],
-            'startDate' => ['required', 'date', 'after:today'],
+            'startDate' => ['required', 'date', 'after_or_equal:today'],
             'endDate' => ['required', 'date', 'after:startDate'],
+            'socialNumber' => ['required', 'string'],
+            'address' => ['required', 'string'],
         ]);
 
         if ($validator->fails()) {
@@ -157,6 +159,8 @@ class ReservationController extends Controller
             'phone' => $request->phone,
             'startDate' => $request->startDate,
             'endDate' => $request->endDate,
+            'socialNumber' => $request->socialNumber,
+            'address' => $request->address,
             'extra' => json_encode($json)
         ]);
 
@@ -185,6 +189,8 @@ class ReservationController extends Controller
             'phone' => ['required', 'string'],
             'startDate' => ['required', 'date'],
             'endDate' => ['required', 'date', 'after:startDate'],
+            'socialNumber' => ['required', 'string'],
+            'address' => ['required', 'string'],
         ]);
 
         if ($validator->fails()) {
@@ -258,6 +264,8 @@ class ReservationController extends Controller
             'startDate' => $request->startDate,
             'endDate' => $request->endDate,
             'status' => $request->status,
+            'socialNumber' => $request->socialNumber,
+            'address' => $request->address,
             'extra' => json_encode($json)
         ]);
 

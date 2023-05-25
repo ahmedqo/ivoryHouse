@@ -76,7 +76,7 @@
                 <div class="w-full flex flex-col gap-2">
                     <label for="startDate" class="text-gray-50 text-md font-black">موعد الدخول</label>
                     <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
-                        <input x-date
+                        <input x-date type="date"
                             class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
                             value="{{ $data->startDate }}" id="startDate" name="startDate" />
                     </div>
@@ -84,9 +84,27 @@
                 <div class="w-full flex flex-col gap-2">
                     <label for="endDate" class="text-gray-50 text-md font-black">موعد الخروج</label>
                     <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
-                        <input x-date
+                        <input x-date type="date"
                             class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
                             value="{{ $data->endDate }}" id="endDate" name="endDate" />
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-rows-1 grid-cols-1 lg:grid-cols-2 gap-4">
+                <div class="w-full flex flex-col gap-2">
+                    <label for="socialNumber" class="text-gray-50 text-md font-black">الرقم المدني</label>
+                    <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
+                        <input
+                            class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
+                            value="{{ $data->socialNumber }}" id="socialNumber" name="socialNumber" />
+                    </div>
+                </div>
+                <div class="w-full flex flex-col gap-2">
+                    <label for="address" class="text-gray-50 text-md font-black">العنوان</label>
+                    <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
+                        <input
+                            class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
+                            value="{{ $data->address }}" id="address" name="address" />
                     </div>
                 </div>
             </div>

@@ -17,6 +17,8 @@ class Reservation extends Model
         'phone',
         'startDate',
         'endDate',
+        'socialNumber',
+        'address',
         'extra',
         'status'
     ];

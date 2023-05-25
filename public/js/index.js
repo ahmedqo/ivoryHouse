@@ -1211,12 +1211,14 @@ const dict = {
     'nationality': "الجنسية",
     'start date': "موعد الدخول",
     'end date': "موعد الخروج",
+    'social number': "الرقم المدني",
     'old password': "الرمز السري القديم",
     'new password': "الرمز السري الجديد",
     'confirm password': "تأكيد الرمز السري",
     'message': "الرسالة",
     'password': "الرمز السري",
     'name': "الاسم الكامل",
+    'today': "اليوم",
 }
 
 function validateForm(e, fields) {
