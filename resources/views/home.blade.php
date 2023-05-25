@@ -34,7 +34,9 @@
         <nav class="w-full bg-gray-950">
             <ul class="container mx-auto p-4 flex gap-4 items-center">
                 <li>
-                    <img src="{{ asset('img/logo.png') }}" class="w-[60px]" />
+                    <a href="{{ route('views.home.show') }}">
+                        <img src="{{ asset('img/logo.png') }}" class="w-[60px]" />
+                    </a>
                 </li>
                 <li>
                     <a href="{{ route('views.home.show') }}" class="font-black text-gray-50 text-md">
@@ -253,12 +255,12 @@
                     <div
                         class="aspect-video p-2 rounded-lg lg:rounded-2xl rounded-br-none lg:rounded-br-none border border-yellow-600 relative">
                         ${row.reserved ? `<div
-                                                            class="absolute inset-2 bg-gray-950 bg-opacity-50 rounded-md lg:rounded-xl rounded-br-none lg:rounded-br-none pointer-events-none">
-                                                        </div>
-                                                        <div
-                                                            class="absolute w-max left-1/2 rounded-b-md -translate-x-1/2 bg-yellow-600 px-2 py-1">
-                                                            محجوز
-                                                        </div>` : ``}
+                                                                class="absolute inset-2 bg-gray-950 bg-opacity-50 rounded-md lg:rounded-xl rounded-br-none lg:rounded-br-none pointer-events-none">
+                                                            </div>
+                                                            <div
+                                                                class="absolute w-max left-1/2 rounded-b-md -translate-x-1/2 bg-yellow-600 px-2 py-1">
+                                                                محجوز
+                                                            </div>` : ``}
                         <div
                             class="w-full h-full overflow-hidden rounded-md lg:rounded-xl rounded-br-none lg:rounded-br-none">
                             <img src="${image}"

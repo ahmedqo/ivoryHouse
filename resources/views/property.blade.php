@@ -34,7 +34,9 @@
         <nav class="w-full bg-gray-950">
             <ul class="container mx-auto p-4 flex gap-4 items-center">
                 <li>
-                    <img src="{{ asset('img/logo.png') }}" class="w-[60px]" />
+                    <a href="{{ route('views.home.show') }}">
+                        <img src="{{ asset('img/logo.png') }}" class="w-[60px]" />
+                    </a>
                 </li>
                 <li>
                     <a href="{{ route('views.home.show') }}" class="font-black text-gray-50 text-md">
@@ -107,9 +109,12 @@
                             class="w-full rounded-lg lg:rounded-2xl overflow-hidden aspect-video bg-gray-900">
                             <ul>
                                 @foreach ($images as $image)
-                                    <li>
+                                    <li
+                                        class="relative after:absolute after:content-[''] after:inset-0 after:block after:bg-gray-900 after:bg-opacity-70">
                                         <img src="{{ asset('storage/files/' . $image->name) }}"
-                                            class="w-full h-full object-contain" />
+                                            class="absolute top-0 left-0 w-full h-full object-cover z-[0]" />
+                                        <img src="{{ asset('storage/files/' . $image->name) }}"
+                                            class="w-full h-full object-contain relative z-[1]" />
                                     </li>
                                 @endforeach
                             </ul>
@@ -132,7 +137,7 @@
                         </button>
                     </div>
                     <div id="slider-buttons" dir="ltr"
-                        class="relative mx-auto overflow-hidden -mt-6 lg:-mt-20 h-[60px] lg:h-[160px]">
+                        class="relative mx-auto overflow-hidden z-[2] -mt-6 lg:-mt-20 h-[60px] lg:h-[160px]">
                         <ul>
                             @foreach ($images as $image)
                                 <li class="aspect-square">

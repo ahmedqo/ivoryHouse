@@ -578,10 +578,10 @@ Table._style = {
     header: "#60A5FA",
     text: "#FFFFFF",
 };
-Table._btnClasses = "w-8 h-8 appearance-none text-md flex items-center justify-center rounded-md lg:rounded-lg font-black outline-none cursor-pointer";
+Table._btnClasses = "w-8 h-8 appearance-none text-md flex items-center justify-center rounded-md lg:rounded-lg font-black outline-none cursor-pointer bg-gray-900 text-gray-50";
 Table._template = () => /*html*/ `
         <div class="flex gap-4 justify-between">
-            <input type="search" placeholder="بحث..." class="flex-1 w-0 lg:w-56 h-[48px] lg:flex-none appearance-none bg-[#4c4643]  text-gray-50 text-lg rounded-md lg:rounded-xl block py-2 px-4" />
+            <input type="search" placeholder="بحث..." class="flex-1 w-0 lg:w-56 h-[48px] lg:flex-none appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block py-2 px-4" />
             <div class="w-max flex flex-wrap gap-4 items-stretch">
                 <div class="w-20 relative">
                     <select class="w-full h-[48px] appearance-none bg-[#4c4643]  text-gray-50 text-lg rounded-md lg:rounded-xl block py-2 px-4">
@@ -1079,13 +1079,13 @@ DatePicker._template = (placeholder) => /*html*/ `
                         </button>
                     </div>
                     <ul class="w-full grid grid-rows-1 grid-cols-7 px-2 mt-2 gap-1">
-                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.3rem]">الأحد</li>
-                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.3rem]">الاثنين</li>
-                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.3rem]">الثلاثاء</li>
-                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.3rem]">الأربعاء</li>
-                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.3rem]">الخميس</li>
-                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.3rem]">الجمعة</li>
-                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.3rem]">السبت</li>
+                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.8rem]">الأحد</li>
+                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.8rem]">الاثنين</li>
+                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.8rem]">الثلاثاء</li>
+                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.8rem]">الأربعاء</li>
+                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.8rem]">الخميس</li>
+                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.8rem]">الجمعة</li>
+                        <li class="w-full flex items-center justify-center rounded-md text-gray-950 text-[.8rem]">السبت</li>
                     </ul>
                     <ul class="w-full grid grid-rows-1 grid-cols-7 px-2 pb-2 gap-1"></ul>
                 </div>
