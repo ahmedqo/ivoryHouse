@@ -19,8 +19,7 @@
                     <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
                         <select x-select id="property" name="property">
                             @foreach ($properties as $property)
-                                <option value="{{ $property->id }}"
-                                    @if ($property->id == $data->property) selected @endif>
+                                <option value="{{ $property->id }}" @if ($property->id == $data->property) selected @endif>
                                     {{ $property->title }}
                                 </option>
                             @endforeach
@@ -96,8 +95,8 @@
                     <label for="icecream" class="text-gray-50 text-md font-black">ماكينة الايس كريم</label>
                     <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
                         <select x-select id="icecream" name="icecream">
-                            <option value="1" @if (count($data->icecream)) selected @endif>نعم</option>
-                            <option value="0" @if (!count($data->icecream)) selected @endif>لا</option>
+                            <option value="1" @if ($data->icecream) selected @endif>نعم</option>
+                            <option value="0" @if (!$data->icecream) selected @endif>لا</option>
                         </select>
                     </div>
                 </div>
@@ -106,7 +105,8 @@
                     <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
                         <input
                             class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
-                            value="{{ count($data->icecream) > 0 ? $data->icecream[0]->days : 0 }}" id="icecream_days" name="icecream_days" type="number" />
+                            value="{{ $data->icecream ? $data->icecream->days : 0 }}" id="icecream_days"
+                            name="icecream_days" type="number" />
                     </div>
                 </div>
                 <div class="w-full flex flex-col gap-2 col-span-2 lg:col-span-4">
@@ -114,7 +114,8 @@
                     <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
                         <input
                             class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
-                            value="{{ count($data->icecream) > 0 ? $data->icecream[0]->description : '' }}" id="icecream_description" name="icecream_description" type="text" />
+                            value="{{ isset($data->icecream) ? $data->icecream->description ?? '' : '' }}"
+                            id="icecream_description" name="icecream_description" type="text" />
                     </div>
                 </div>
             </div>
@@ -123,8 +124,8 @@
                     <label for="kayak" class="text-gray-50 text-md font-black">قارب كاياك</label>
                     <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
                         <select x-select id="kayak" name="kayak">
-                            <option value="1" @if (count($data->kayak)) selected @endif>نعم</option>
-                            <option value="0" @if (!count($data->kayak)) selected @endif>لا</option>
+                            <option value="1" @if ($data->kayak) selected @endif>نعم</option>
+                            <option value="0" @if (!$data->kayak) selected @endif>لا</option>
                         </select>
                     </div>
                 </div>
@@ -133,7 +134,8 @@
                     <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
                         <input
                             class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
-                            value="{{ count($data->kayak) ? $data->kayak[0]->days : 0 }}" id="kayak_days" name="kayak_days" type="number" />
+                            value="{{ $data->kayak ? $data->kayak->days : 0 }}" id="kayak_days" name="kayak_days"
+                            type="number" />
                     </div>
                 </div>
                 <div class="w-full flex flex-col gap-2 col-span-2 lg:col-span-4">
@@ -141,7 +143,8 @@
                     <div class="relative bg-[#4c4643] text-gray-50 rounded-md lg:rounded-xl">
                         <input
                             class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
-                            value="{{ count($data->kayak) ? $data->kayak[0]->description : '' }}" id="kayak_description" name="kayak_description" type="text" />
+                            value="{{ isset($data->kayak) ? $data->kayak->description ?? '' : '' }}"
+                            id="kayak_description" name="kayak_description" type="text" />
                     </div>
                 </div>
             </div>

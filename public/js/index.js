@@ -1218,3 +1218,19 @@ const dict = {
     'password': "الرمز السري",
     'name': "الاسم الكامل",
 }
+
+function validateForm(e, fields) {
+    for (let i = 0; i < fields.length; i++) {
+        const fieldName = fields[i];
+        const fieldValue = e[fieldName].value;
+        if (fieldValue.trim() === '') {
+            (new Toaster({
+                positionX: "left",
+                positionY: "bottom",
+                width: 500
+            }))['error']('جميع الحقول مطلوبة');
+            return false;
+        }
+    }
+    return true;
+}

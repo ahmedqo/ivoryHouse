@@ -108,7 +108,7 @@
                 <h1 class="text-gray-50 text-2xl lg:text-3xl font-black mb-6">إحجز فلتك الان</h1>
                 <form id="form" onsubmit="search(event)"
                     class="w-full flex flex-col lg:flex-row lg:flex-wrap gap-4">
-                    <div class="flex-1 relative">
+                    <div class="flex-1 relative hidden">
                         <svg class="pointer-events-none w-6 h-6 text-gray-950 absolute top-1/2 -translate-y-1/2 left-4"
                             fill="currentColor" viewBox="0 96 960 960">
                             <path
@@ -142,10 +142,10 @@
                             class="aspect-video p-2 rounded-lg lg:rounded-2xl rounded-br-none lg:rounded-br-none border border-yellow-600 relative">
                             @if ($row->reserved)
                                 <div
-                                    class="absolute inset-2 bg-gray-950 bg-opacity-50 rounded-md lg:rounded-xl rounded-br-none lg:rounded-br-none pointer-events-none z-[1]">
+                                    class="absolute inset-2 bg-gray-950 bg-opacity-50 rounded-md lg:rounded-xl rounded-br-none lg:rounded-br-none pointer-events-none">
                                 </div>
                                 <div
-                                    class="absolute w-max left-1/2 rounded-b-md -translate-x-1/2 bg-yellow-600 px-2 py-1 z-[1]">
+                                    class="absolute w-max left-1/2 rounded-b-md -translate-x-1/2 bg-yellow-600 px-2 py-1">
                                     محجوز
                                 </div>
                             @endif
@@ -245,20 +245,20 @@
         new DatePicker();
         const propreties = document.querySelector("#propreties");
 
-        function template(row) {
+        function template(row, startDate, endDate) {
             const link = "{{ route('views.property.show', ':slug') }}".replace(/:slug/g, row.slug);
             const image = "{{ asset('storage/files/') }}" + "/" + row.images[0].name;
             return `
-                <a href="${link}" class="block">
+                <a href="${link}?startDate=${startDate}&endDate=${endDate}" class="block">
                     <div
                         class="aspect-video p-2 rounded-lg lg:rounded-2xl rounded-br-none lg:rounded-br-none border border-yellow-600 relative">
                         ${row.reserved ? `<div
-                                            class="absolute inset-2 bg-gray-950 bg-opacity-50 rounded-md lg:rounded-xl rounded-br-none lg:rounded-br-none pointer-events-none z-[1]">
-                                        </div>
-                                        <div
-                                            class="absolute w-max left-1/2 rounded-b-md -translate-x-1/2 bg-yellow-600 px-2 py-1 z-[1]">
-                                            محجوز
-                                        </div>` : ``}
+                                                            class="absolute inset-2 bg-gray-950 bg-opacity-50 rounded-md lg:rounded-xl rounded-br-none lg:rounded-br-none pointer-events-none">
+                                                        </div>
+                                                        <div
+                                                            class="absolute w-max left-1/2 rounded-b-md -translate-x-1/2 bg-yellow-600 px-2 py-1">
+                                                            محجوز
+                                                        </div>` : ``}
                         <div
                             class="w-full h-full overflow-hidden rounded-md lg:rounded-xl rounded-br-none lg:rounded-br-none">
                             <img src="${image}"
@@ -287,7 +287,7 @@
                 .then(data => {
                     propreties.innerHTML = "";
                     data.forEach(row => {
-                        propreties.innerHTML += template(row);
+                        propreties.innerHTML += template(row, form.get('startDate'), form.get('endDate'));
                     });
                 })
                 .catch(error => console.error(error));
@@ -307,6 +307,8 @@
                 target: document.querySelector("#form")
             })
         }
+
+        document.querySelector("#startDate").setAttribute('value', formatDate(new Date()));
 
         getSearchData();
     </script>

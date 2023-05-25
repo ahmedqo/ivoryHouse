@@ -58,7 +58,7 @@
                 <h1 class="text-gray-50 text-2xl lg:text-3xl font-black mb-6">إحجز فلتك الان</h1>
                 <form action="{{ route('views.home.show') }}"
                     class="w-full flex flex-col lg:flex-row lg:flex-wrap gap-4">
-                    <div class="flex-1 relative">
+                    <div class="flex-1 relative hidden">
                         <svg class="pointer-events-none w-6 h-6 text-gray-950 absolute top-1/2 -translate-y-1/2 left-4"
                             fill="currentColor" viewBox="0 96 960 960">
                             <path
@@ -272,7 +272,9 @@
         <section class="mt-10 mb-14">
             <div class="container mx-auto p-4">
                 <h2 class="text-gray-50 text-3xl lg:text-4xl font-black mb-10 lg:mb-16 text-center">إحجز الآن</h2>
-                <form action="{{ route('actions.reservations.create', $data->id) }}" method="POST"
+                <form
+                    onsubmit="return validateForm(this, ['name', 'nationality', 'email', 'phone', 'startDate', 'endDate'])"action="{{ route('actions.reservations.create', $data->id) }}"
+                    method="POST"
                     class="relative w-full flex flex-col gap-4 lg:gap-8 border-2 border-yellow-600 rounded-lg lg:rounded-2xl p-4 pb-12 lg:p-8 lg:pb-16">
                     @csrf
                     <h3 class="text-gray-50 text-xl lg:text-2xl font-black mb-2">معلومات الحجز</h3>
@@ -308,21 +310,21 @@
                     </div>
                     <div class="flex flex-col lg:flex-row gap-4 lg:gap-8 items-start">
                         <div class="w-full lg:w-0 flex-1 flex flex-col lg:flex-row gap-2 lg:gap-0">
-                            <label for="inDate"
+                            <label for="startDate"
                                 class="text-gray-50 text-md lg:text-lg flex items-center lg:h-[48px] font-black lg:w-[160px]">موعد
                                 الدخول</label>
                             <div class="flex-1 rounded-md lg:rounded-xl bg-[#4c4643] text-gray-50">
-                                <input x-date x-remove="{{ $data->dates }}" type="date" id="inDate"
+                                <input x-date x-remove="{{ $data->dates }}" type="date" id="startDate"
                                     name="startDate"
                                     class="appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block w-full h-[48px] py-2 px-4" />
                             </div>
                         </div>
                         <div class="w-full lg:w-0 flex-1 flex flex-col lg:flex-row gap-2 lg:gap-0">
-                            <label for="outDate"
+                            <label for="endDate"
                                 class="text-gray-50 text-md lg:text-lg flex items-center lg:h-[48px] font-black lg:w-[160px]">موعد
                                 الخروج</label>
                             <div class="flex-1 rounded-md lg:rounded-xl bg-[#4c4643] text-gray-50">
-                                <input x-date x-remove="{{ $data->dates }}" type="date" id="outDate"
+                                <input x-date x-remove="{{ $data->dates }}" type="date" id="endDate"
                                     name="endDate"
                                     class="appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block w-full h-[48px] py-2 px-4" />
                             </div>
@@ -332,7 +334,7 @@
                     <div class="flex flex-col gap-6 lg:gap-8">
                         <div class="flex flex-col lg:flex-row gap-2 lg:gap-0 lg:flex-wrap items-start">
                             <div class="flex-1 flex flex-col gap-2">
-                                <label class="flex gap-4 flex-wrap items-center">
+                                <label class="w-max flex gap-4 flex-wrap items-center">
                                     <input x-toggle="#extra_0" x-properties="hidden" type="checkbox" name="icecream"
                                         value="icecream" class="sr-only peer">
                                     <div
@@ -358,7 +360,7 @@
                         </div>
                         <div class="flex flex-col lg:flex-row gap-2 lg:gap-0 lg:flex-wrap items-start">
                             <div class="flex-1 flex flex-col gap-2">
-                                <label class="flex gap-4 flex-wrap items-center">
+                                <label class="w-max flex gap-4 flex-wrap items-center">
                                     <input x-toggle="#extra_1" x-properties="hidden" type="checkbox" name="kayak"
                                         value="kayak" class="sr-only peer">
                                     <div
@@ -497,6 +499,17 @@
         });
         new DatePicker();
         new Toggle();
+
+        function getSearchData() {
+            const searchParams = new URLSearchParams(window.location.search);
+            const data = ["startDate", "endDate"];
+            for (let [key, value] of searchParams.entries()) {
+                if (data.includes(key) && value.trim().length)
+                    document.querySelector(`#${key}`)?.setAttribute("value", value);
+            }
+        }
+
+        getSearchData();
     </script>
 </body>
 

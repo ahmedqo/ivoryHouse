@@ -73,20 +73,39 @@
                             <div class="flex flex-col gap-2">
                                 @php
                                     $extra = json_decode($row->extra);
-                                    $icecream = array_filter($extra, function ($ext) {
-                                        return $ext->name === 'icecream';
-                                    }, 1);
-                                    $kayak = array_filter($extra, function ($ext) {
-                                        return $ext->name === 'kayak';
-                                    }, 1);
+                                    $icecream = array_filter(
+                                        $extra,
+                                        function ($ext) {
+                                            return $ext->name === 'icecream';
+                                        },
+                                        1,
+                                    );
+                                    $kayak = array_filter(
+                                        $extra,
+                                        function ($ext) {
+                                            return $ext->name === 'kayak';
+                                        },
+                                        1,
+                                    );
+                                    
+                                    if (!empty($icecream)) {
+                                        $icecream = reset($icecream);
+                                    } else {
+                                        $icecream = null;
+                                    }
+                                    if (!empty($kayak)) {
+                                        $kayak = reset($kayak);
+                                    } else {
+                                        $kayak = null;
+                                    }
                                 @endphp
-                                @if(count($icecream))
-                                    <span>ماكينة الايس كريم لمدة {{ $icecream[0]->days }} أيام</span>
+                                @if ($icecream)
+                                    <span>ماكينة الايس كريم لمدة {{ $icecream->days }} أيام</span>
                                 @endif
-                                @if(count($kayak))
-                                    <span>قارب كاياك لمدة {{ $kayak[0]->days }} أيام</span>
+                                @if ($kayak)
+                                    <span>قارب كاياك لمدة {{ $kayak->days }} أيام</span>
                                 @endif
-                                @if(!count($icecream) && !count($kayak))
+                                @if (!$icecream && !$kayak)
                                     لا إضافات
                                 @endif
                             </div>
@@ -115,7 +134,8 @@
                                         class="w-8 h-8 flex items-center justify-center text-gray-50 bg-green-600 hover:bg-green-400 focus:bg-green-400">
                                         <svg class="block w-6 h-6 pointer-events-none" fill="currentcolor"
                                             viewBox="0 96 960 960">
-                                           <path d="M400 947q-114-26-188-117t-74-212q0-68 27.5-129T245 385q10-15 30-14.5t35 13.5q11 12 11.5 29.5T308 445q-37 34-58 78.5T229 618q0 87 52.5 153.5T417 856q15 5 25.5 18t10.5 28q0 25-17 37.5t-36 7.5Zm164 0q-21 7-37.5-7T510 903q0-13 10-27.5t26-19.5q83-18 134.5-84.5T732 618q0-100-68-172t-168-78h-23l42 42q8 10 8 25t-8 24q-10 9-25.5 9t-24.5-9L355 350q-6-6-10-14.5t-4-17.5q0-10 4-18t10-14l110-112q9-8 24.5-7.5T515 174q7 10 7 26t-7 24l-53 52h24q140 0 239 100.5T824 618q0 120-74 212T564 947Z"/>
+                                            <path
+                                                d="M400 947q-114-26-188-117t-74-212q0-68 27.5-129T245 385q10-15 30-14.5t35 13.5q11 12 11.5 29.5T308 445q-37 34-58 78.5T229 618q0 87 52.5 153.5T417 856q15 5 25.5 18t10.5 28q0 25-17 37.5t-36 7.5Zm164 0q-21 7-37.5-7T510 903q0-13 10-27.5t26-19.5q83-18 134.5-84.5T732 618q0-100-68-172t-168-78h-23l42 42q8 10 8 25t-8 24q-10 9-25.5 9t-24.5-9L355 350q-6-6-10-14.5t-4-17.5q0-10 4-18t10-14l110-112q9-8 24.5-7.5T515 174q7 10 7 26t-7 24l-53 52h24q140 0 239 100.5T824 618q0 120-74 212T564 947Z" />
                                         </svg>
                                     </a>
                                 @endif

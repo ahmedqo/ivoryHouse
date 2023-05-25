@@ -107,25 +107,36 @@
                                     },
                                     1,
                                 );
+                                
+                                if (!empty($icecream)) {
+                                    $icecream = reset($icecream);
+                                } else {
+                                    $icecream = null;
+                                }
+                                if (!empty($kayak)) {
+                                    $kayak = reset($kayak);
+                                } else {
+                                    $kayak = null;
+                                }
                             @endphp
-                            @if (count($icecream))
+                            @if ($icecream)
                                 <tr>
                                     <td style="padding-bottom: 10px;">
-                                        <div style="font-size: 14px;">ماكينة الايس كريم لمدة {{ $icecream[0]->days }}
+                                        <div style="font-size: 14px;">ماكينة الايس كريم لمدة {{ $icecream->days }}
                                             أيام</div>
                                     </td>
                                     <td style="font-size: 14px; text-align: left; padding-bottom: 10px;">
-                                        {{ $icecream[0]->total }} دينار
+                                        {{ $icecream->total }} دينار
                                     </td>
                                 </tr>
                             @endif
-                            @if (count($kayak))
+                            @if ($kayak)
                                 <tr>
                                     <td style="padding-bottom: 10px;">
-                                        <div style="font-size: 14px;">قارب كاياك لمدة {{ $kayak[0]->days }} أيام</div>
+                                        <div style="font-size: 14px;">قارب كاياك لمدة {{ $kayak->days }} أيام</div>
                                     </td>
                                     <td style="font-size: 14px; text-align: left; padding-bottom: 10px;">
-                                        {{ $kayak[0]->total }} دينار
+                                        {{ $kayak->total }} دينار
                                     </td>
                                 </tr>
                             @endif

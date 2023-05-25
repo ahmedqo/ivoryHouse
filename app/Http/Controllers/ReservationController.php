@@ -22,12 +22,24 @@ class ReservationController extends Controller
     {
         $data =  Reservation::with('property')->where('id', $id)->first();
         $data->extra = json_decode($data->extra);
-        $data['icecream'] = array_filter($data->extra, function ($ext) {
+        $icecream = array_filter($data->extra, function ($ext) {
             return $ext->name === 'icecream';
         }, 1);
-        $data['kayak'] = array_filter($data->extra, function ($ext) {
+        $kayak = array_filter($data->extra, function ($ext) {
             return $ext->name === 'kayak';
         }, 1);
+
+        if (!empty($icecream)) {
+            $data['icecream'] = reset($icecream);
+        } else {
+            $data['icecream'] = null;
+        }
+        if (!empty($kayak)) {
+            $data['kayak'] = reset($kayak);
+        } else {
+            $data['kayak'] = null;
+        }
+
         $properties = Property::orderBy('id', 'DESC')->get();
 
         return view('reservation.edit', compact('data', 'properties'));
@@ -163,6 +175,7 @@ class ReservationController extends Controller
 
     public function update(Request $request, $id)
     {
+        $property = Property::findorfail($id);
         $validator = Validator::make($request->all(), [
             'property' => ['required', 'integer'],
             'status' => ['required', 'string'],
