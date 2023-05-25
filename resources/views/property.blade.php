@@ -267,7 +267,7 @@
                     </a>
                 </div>
                 <div id="map"
-                    class="w-full h-full aspect-video lg:aspect-auto overflow-hidden flex items-center justify-center">
+                    class="w-full h-full aspect-square lg:aspect-auto overflow-hidden flex items-center justify-center">
                     <iframe
                         src="https://maps.google.com/maps?hl=ar&amp;q={{ urlencode($data->map) }}&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
                         loading="lazy" width="200%" height="200%"></iframe>
