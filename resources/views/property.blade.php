@@ -120,7 +120,7 @@
                             </ul>
                         </div>
                         <button shadow id="arrow-left" type="button"
-                            class="flex items-center justify-center absolute -left-5 lg:-left-6 top-1/2 -translate-y-1/2 text-gray-950 w-10 h-10 lg:w-12 lg:h-12 bg-yellow-600 hover:bg-yellow-400 focus:bg-yellow-400 rounded-full">
+                            class="flex items-center justify-center absolute -left-5 lg:-left-6 top-1/2 -translate-y-1/2 text-gray-950 w-10 h-10 lg:w-12 lg:h-12 bg-yellow-600 hover:bg-yellow-400 focus:bg-yellow-400 rounded-full z-[2]">
                             <svg class="block h-8 w-8 lg:h-10 lg:w-10 pointer-events-none" fill="currentcolor"
                                 viewBox="0 96 960 960">
                                 <path
@@ -128,7 +128,7 @@
                             </svg>
                         </button>
                         <button shadow id="arrow-right" type="button"
-                            class="flex items-center justify-center absolute -right-5 lg:-right-6 top-1/2 -translate-y-1/2 text-gray-950 w-10 h-10 lg:w-12 lg:h-12 bg-yellow-600 hover:bg-yellow-400 focus:bg-yellow-400 rounded-full">
+                            class="flex items-center justify-center absolute -right-5 lg:-right-6 top-1/2 -translate-y-1/2 text-gray-950 w-10 h-10 lg:w-12 lg:h-12 bg-yellow-600 hover:bg-yellow-400 focus:bg-yellow-400 rounded-full z-[2]">
                             <svg class="block h-8 w-8 lg:h-10 lg:w-10 pointer-events-none" fill="currentcolor"
                                 viewBox="0 96 960 960">
                                 <path
