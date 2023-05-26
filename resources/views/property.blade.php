@@ -201,7 +201,7 @@
                 </div>
             </div>
             <div
-                class="bg-gray-50 lg:col-span-5 -mb-10 lg:mb-0 lg:-mr-10 pb-10 lg:pb-0 lg:pr-10 overflow-hidden order-1 lg:order-2 relative z-[1]">
+                class="bg-gray-50 lg:col-span-5 -mb-10 lg:mb-0 lg:-mr-10 overflow-hidden order-1 lg:order-2 relative z-[1]">
                 <div
                     class="flex lg:flex-col w-[80%] h-max lg:w-max lg:h-[80%] bottom-10 left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-0 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 absolute">
                     <ul shadow
