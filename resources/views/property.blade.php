@@ -227,7 +227,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('views.property.show', $data->slug)) }}"
+                            <a href="https://twitter.com/intent/tweet?url={{ urlencode(route('views.property.show', $data->slug)) }}&text={{ urlencode($data->title) }}"
                                 class="flex text-gray-950">
                                 <svg class="pointer-events-none w-6 h-6" fill="currentColor" viewBox="0 0 310 310">
                                     <path
@@ -248,7 +248,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.instagram.com/sharer?url={{ urlencode(route('views.property.show', $data->slug)) }}"
+                            <a href="https://www.tiktok.com/create?url={{ urlencode(route('views.property.show', $data->slug)) }}"
                                 class="flex text-gray-950">
                                 <svg class="pointer-events-none w-6 h-6" fill="currentColor" viewBox="0 0 32 32">
                                     <path
