@@ -36,7 +36,7 @@ class SystemController extends Controller
             $extra = array_reduce(json_decode($single->extra), function ($carry, $ext) {
                 return $carry + $ext->total;
             });
-            $total += (($startDate->diffInDays($endDate) + 1) * $property->price) + $extra;
+            $total += ($startDate->diffInDays($endDate)  * $property->price) + $extra;
         }
         foreach ($reservation->with('property')->get() as $single) {
             $property = $single->property()->first();
@@ -45,7 +45,7 @@ class SystemController extends Controller
             $extra = array_reduce(json_decode($single->extra), function ($carry, $ext) {
                 return $carry + $ext->total;
             });
-            $price = (($startDate->diffInDays($endDate) + 1) * $property->price) + $extra;
+            $price = ($startDate->diffInDays($endDate) * $property->price) + $extra;
             if ($single->status === 1) {
                 $amount += $price;
                 $stay += 1;
