@@ -9,6 +9,7 @@ use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
 
 class ReservationController extends Controller
 {
@@ -116,8 +117,8 @@ class ReservationController extends Controller
             ]);
         }
 
-        $startDate = $request->input('startDate');
-        $endDate = $request->input('endDate');
+        $startDate = $request->startDate;
+        $endDate = $request->endDate;
 
         $exist = Reservation::where('property', $id)->where('status', 1)
             ->where(function ($query) use ($startDate, $endDate) {
@@ -137,19 +138,25 @@ class ReservationController extends Controller
             ]);
         }
         $json = [];
-        if ($request->has('icecream') && $request->has('icecream_days'))
+        $price = Setting::first()->assurance;
+        if ($request->has('icecream') && $request->has('icecream_days')) {
+            $price += Setting::first()->icecream * intval($request->icecream_days);
             array_push($json, [
                 'name' => $request->icecream,
                 'days' => intval($request->icecream_days),
                 'total' => Setting::first()->icecream * intval($request->icecream_days)
             ]);
-
-        if ($request->has('kayak') && $request->has('kayak_days'))
+        }
+        if ($request->has('kayak') && $request->has('kayak_days')) {
+            $price += Setting::first()->kayak * intval($request->kayak_days);
             array_push($json, [
                 'name' => $request->kayak,
                 'days' => intval($request->kayak_days),
                 'total' => Setting::first()->kayak * intval($request->kayak_days)
             ]);
+        }
+
+        $price += Carbon::parse($startDate)->diffInDays(Carbon::parse($endDate)) * $property->price;
 
         $current = Reservation::create([
             'property' => $id,
@@ -168,8 +175,10 @@ class ReservationController extends Controller
             'id' => $id,
             'reservation' => $current
         ];
-        MailFunction::reservation($request->email, $data);
-        MailFunction::reservation(env('MAIL_SYSTEM_ADDRESS'), $data);
+
+        foreach ([$request->email, env('MAIL_SYSTEM_ADDRESS')] as $email) {
+            MailFunction::reservation($email, $data);
+        }
 
         return Redirect::route('views.property.show', $property->slug)->with([
             'message' => 'تم الاستئجار بنجاح',
