@@ -3,8 +3,7 @@
 namespace App\Functions;
 
 use App\Mail\ContactMail;
-use App\Mail\ReservationMail;
-use App\Mail\CancelMail;
+use App\Mail\SendMail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
@@ -54,6 +53,13 @@ class MailFunction
             'Friday' => 'الجمعة',
             'Saturday' => 'السبت',
             'Sunday' => 'الأحد',
+            'Mon' => 'الاثنين',
+            'Tue' => 'الثلاثاء',
+            'Wed' => 'الأربعاء',
+            'Thu' => 'الخميس',
+            'Fri' => 'الجمعة',
+            'Sat' => 'السبت',
+            'Sun' => 'الأحد',
         ];
         $months = [
             'January' => 'يناير',
@@ -68,6 +74,18 @@ class MailFunction
             'October' => 'أكتوبر',
             'November' => 'نوفمبر',
             'December' => 'ديسمبر',
+            'Jan' => 'يناير',
+            'Feb' => 'فبراير',
+            'Mar' => 'مارس',
+            'Apr' => 'أبريل',
+            'May' => 'مايو',
+            'Jun' => 'يونيو',
+            'Jul' => 'يوليو',
+            'Aug' => 'أغسطس',
+            'Sep' => 'سبتمبر',
+            'Oct' => 'أكتوبر',
+            'Nov' => 'نوفمبر',
+            'Dec' => 'ديسمبر',
         ];
 
         $pattern_1 = '/\b(' . implode('|', array_keys($days)) . ')\b/iu';
@@ -94,6 +112,8 @@ class MailFunction
         $image = FileFunction::all($data['id'])[0]->name;
 
         return [
+            'main' => $data['title'],
+            'subject' => $data['subject'],
             'title' => $property->title,
             'map' => $property->map,
             'address' => $property->address . ', ' . $property->city . ', ' . $property->state . ', ' . $property->zipcode,
@@ -106,17 +126,9 @@ class MailFunction
         ];
     }
 
-    public static function reservation($email, $data)
+    public static function send($email, $data)
     {
-        $mail = new ReservationMail(MailFunction::_data($data));
-
-        Mail::to($email)->send($mail);
-        return true;
-    }
-
-    public static function cancel($email, $data)
-    {
-        $mail = new CancelMail(MailFunction::_data($data));
+        $mail = new SendMail(MailFunction::_data($data));
 
         Mail::to($email)->send($mail);
         return true;

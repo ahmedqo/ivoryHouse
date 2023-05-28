@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ReservationMail extends Mailable
+class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -32,6 +32,6 @@ class ReservationMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('تأكيد الحجز')->from($this->from)->view('mail.reservation');
+        return $this->subject($this->data['subject'])->from($this->from)->view('mail.send');
     }
 }

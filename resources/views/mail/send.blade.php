@@ -43,7 +43,7 @@
 									margin: 0;
 									padding: 0 0 16px 0;
 								">
-                            لقد تم تأكيد حجزك.
+                            {{ $data['main'] }}
                         </h1>
                         <img alt="{{ $data['title'] }}" src="{{ asset('storage/files/' . $data['image']) }}"
                             style="width: 100%; background-color: #111827; object-fit: contain; display: block; height: 300px" />

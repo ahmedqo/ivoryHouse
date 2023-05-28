@@ -50,9 +50,11 @@ class ReservationController extends Controller
     {
         $current = Reservation::findorfail($id);
         $current->update(['status' => -1]);
-        MailFunction::cancel($current->email, [
+        MailFunction::send($current->email, [
             'id' => $current->property,
             'reservation' => $current,
+            'title' => 'لقد تم إلغاء حجزك.',
+            'subject' => 'إلغاء الحجز',
         ]);
         return Redirect::route('views.reservations.index')->with([
             'message' => 'تم الإلغاء بنجاح',
@@ -86,9 +88,11 @@ class ReservationController extends Controller
         }
 
         $current->update(['status' => 1]);
-        MailFunction::reservation($current->email, [
+        MailFunction::send($current->email, [
             'id' => $current->property,
             'reservation' => $current,
+            'title' => 'لقد تم تأكيد حجزك.',
+            'subject' => 'تأكيد الحجز',
         ]);
         return Redirect::route('views.reservations.index')->with([
             'message' => 'تم الحجز بنجاح',
@@ -173,11 +177,13 @@ class ReservationController extends Controller
 
         $data = [
             'id' => $id,
-            'reservation' => $current
+            'reservation' => $current,
+            'title' => 'لقد تم تأكيد حجزك.',
+            'subject' => 'تأكيد الحجز',
         ];
 
         foreach ([$request->email, env('MAIL_SYSTEM_ADDRESS')] as $email) {
-            MailFunction::reservation($email, $data);
+            MailFunction::send($email, $data);
         }
 
         return Redirect::route('views.property.show', $property->slug)->with([
@@ -251,16 +257,20 @@ class ReservationController extends Controller
         $current = Reservation::findorfail($id);
 
         if (intval($current->status) != intval($request->status) && intval($request->status) == -1) {
-            MailFunction::cancel($request->email, [
+            MailFunction::send($request->email, [
                 'id' => $request->property,
                 'reservation' => $current,
+                'title' => 'لقد تم إلغاء حجزك.',
+                'subject' => 'إلغاء الحجز',
             ]);
         }
 
         if ((intval($current->status) != intval($request->status) && intval($request->status) == 1) || intval($current->property) != intval($request->property)) {
-            MailFunction::reservation($request->email, [
+            MailFunction::send($request->email, [
                 'id' => $request->property,
                 'reservation' => $current,
+                'title' => 'لقد تم تأكيد حجزك.',
+                'subject' => 'تأكيد الحجز',
             ]);
         }
 
