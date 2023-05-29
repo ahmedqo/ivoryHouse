@@ -66,6 +66,58 @@ input[type="number"]::-webkit-outer-spin-button {
     font-family: 'Cairo', sans-serif;
 }
 
+#calendar,
+.fc-daygrid-week-number {
+    color: #f9fafb !important;
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th {
+    border-color: #f9fafb !important;
+}
+
+.fc-button-group button {
+    background-color: #ca8a04 !important;
+    border-color: #4c4643 !important;
+}
+
+.fc-list-event:hover td {
+    background-color: #ca8a04 !important;
+}
+
+.fc-list-day>* {
+    background-color: #f1a602 !important;
+}
+
+.fc-button-primary:disabled {
+    background-color: #634401 !important;
+    border-color: #4c4643 !important;
+}
+
+.fc-button-primary {
+    background-color: #8a5e01 !important;
+    border-color: #4c4643 !important;
+}
+
+.fc-event-title-container,
+.fc-h-event {
+    background-color: #ca8a04 !important;
+    border-color: #634401 !important;
+    cursor: pointer !important;
+}
+
+.fc-list-event-dot {
+    border-color: #ca8a04 !important;
+}
+
+.fc-view-harness {
+    background-color: #4c4643 !important;
+}
+
+.max-h-100 {
+    max-height: calc(100vh - 8rem);
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

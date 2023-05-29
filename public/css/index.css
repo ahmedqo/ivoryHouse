@@ -67,6 +67,54 @@ input[type="number"]::-webkit-outer-spin-button {
   font-family: 'Cairo', sans-serif;
 }
 
+#calendar,
+.fc-daygrid-week-number {
+  color: #f9fafb !important;
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border-color: #f9fafb !important;
+}
+
+.fc-button-group button {
+  background-color: #ca8a04 !important;
+  border-color: #4c4643 !important;
+}
+
+.fc-list-event:hover td {
+  background-color: #ca8a04 !important;
+}
+
+.fc-list-day>* {
+  background-color: #f1a602 !important;
+}
+
+.fc-button-primary:disabled {
+  background-color: #634401 !important;
+  border-color: #4c4643 !important;
+}
+
+.fc-button-primary {
+  background-color: #8a5e01 !important;
+  border-color: #4c4643 !important;
+}
+
+.fc-event-title-container,
+.fc-h-event {
+  background-color: #ca8a04 !important;
+  border-color: #634401 !important;
+  cursor: pointer !important;
+}
+
+.fc-list-event-dot {
+  border-color: #ca8a04 !important;
+}
+
+.fc-view-harness {
+  background-color: #4c4643 !important;
+}
+
 /*
 ! tailwindcss v3.3.2 | MIT License | https://tailwindcss.com
 */
@@ -2327,6 +2375,10 @@ video {
     width: 1.5rem;
   }
 
+  .lg\:w-7\/12{
+    width: 58.333333%;
+  }
+
   .lg\:w-8{
     width: 2rem;
   }
@@ -2368,6 +2420,10 @@ video {
   .lg\:translate-x-0{
     --tw-translate-x: 0px;
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .lg\:grid-cols-1{
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 
   .lg\:grid-cols-10{

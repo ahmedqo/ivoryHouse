@@ -753,9 +753,8 @@ class Select {
                 }));
             }
         }
-        if (options.length < 10) {
-            el.search.remove();
-        }
+        if (options.length < 10) Class.add(el.search, 'hidden');
+        else Class.remove(el.search, 'hidden');
         for (let i = 0; i < options.length; i++) {
             const option = options[i];
             const index = [...el.current.options].indexOf(option);

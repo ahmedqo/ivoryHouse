@@ -19,11 +19,12 @@ class SystemController extends Controller
     {
         $users = User::count();
         $properties = Property::count();
-        $reservation = Reservation::where(function ($query) {
+        $reservation = Reservation::with('property')->where(function ($query) {
             $query->whereMonth('startDate', now()->month)
                 ->orWhereMonth('endDate', now()->month);
         });
         $reservations = $reservation->count();
+        $data = [];
         $total = 0;
         $amount = 0;
         $off = 0;
@@ -36,19 +37,31 @@ class SystemController extends Controller
             $extra = array_reduce(json_decode($single->extra), function ($carry, $ext) {
                 return $carry + $ext->total;
             });
-            $total += ($startDate->diffInDays($endDate)  * $property->price) + $extra;
+            $total += ($startDate->diffInDays($endDate)  * $property->price) + $extra + Setting::first()->assurance;
         }
-        foreach ($reservation->with('property')->get() as $single) {
+        foreach ($reservation->get() as $single) {
             $property = $single->property()->first();
             $startDate = Carbon::parse($single->startDate);
             $endDate = Carbon::parse($single->endDate);
             $extra = array_reduce(json_decode($single->extra), function ($carry, $ext) {
                 return $carry + $ext->total;
             });
-            $price = ($startDate->diffInDays($endDate) * $property->price) + $extra;
+            $price = ($startDate->diffInDays($endDate) * $property->price) + $extra + Setting::first()->assurance;
             if ($single->status === 1) {
                 $amount += $price;
                 $stay += 1;
+                $data[] = [
+                    'title' => $property->title,
+                    'name' => $single->name,
+                    'nationality' => $single->nationality,
+                    'email' => $single->email,
+                    'phone' => $single->phone,
+                    'socialNumber' => $single->socialNumber,
+                    'address' => $single->address,
+                    'json' => json_encode($single->extra),
+                    'start' => $single->startDate,
+                    'end' => $single->endDate,
+                ];
             } else {
                 $off += $price;
                 $cancel += 1;
@@ -75,7 +88,8 @@ class SystemController extends Controller
             ->join('properties', 'reservations.property', '=', 'properties.id')
             ->get()
             ->count();
-        return view('dashboard', compact('users', 'properties', 'reservations', 'total', 'amount', 'ordered', 'rate', 'off', 'stay', 'cancel'));
+
+        return view('dashboard', compact('users', 'properties', 'reservations', 'total', 'amount', 'ordered', 'rate', 'off', 'stay', 'cancel', 'data'));
     }
 
     public function store(Request $request, $name, $token)

@@ -194,7 +194,6 @@ class ReservationController extends Controller
 
     public function update(Request $request, $id)
     {
-        $property = Property::findorfail($id);
         $validator = Validator::make($request->all(), [
             'property' => ['required', 'integer'],
             'status' => ['required', 'string'],
@@ -209,7 +208,7 @@ class ReservationController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return Redirect::route("views.property.show", $property->slug)->with([
+            return Redirect::route("views.reservations.edit", $id)->with([
                 'message' => $validator->errors()->all(),
                 'type' => 'error'
             ]);
@@ -218,7 +217,7 @@ class ReservationController extends Controller
         $startDate = $request->input('startDate');
         $endDate = $request->input('endDate');
 
-        $exist = Reservation::where('property', $id)->where('status', 1)
+        $exist = Reservation::where('id', '!=', $id)->where('property', $request->property)->where('status', 1)
             ->where(function ($query) use ($startDate, $endDate) {
                 $query->whereBetween('startDate', [$startDate, $endDate])
                     ->orWhereBetween('endDate', [$startDate, $endDate])
@@ -230,7 +229,7 @@ class ReservationController extends Controller
             ->first();
 
         if ($exist) {
-            return Redirect::route("views.property.show", $property->slug)->with([
+            return Redirect::route("views.reservations.edit", $id)->with([
                 'message' => 'عذرًا، تم استئجار العقار في هذه الفترة',
                 'type' => 'error'
             ]);
