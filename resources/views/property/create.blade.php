@@ -14,7 +14,7 @@
         <form action="{{ route('actions.properties.create') }}" method="POST" enctype="multipart/form-data"
             class="w-full flex flex-col gap-4">
             @csrf
-            <div class="grid grid-rows-1 grid-cols-1 lg:grid-cols-3 gap-4">
+            <div class="grid grid-rows-1 grid-cols-1 lg:grid-cols-4 gap-4">
                 <div class="w-full flex flex-col gap-2 lg:col-span-2">
                     <label for="title" class="text-gray-50 text-md font-black">الاسم</label>
                     <div class="relative">
@@ -25,11 +25,19 @@
                     </div>
                 </div>
                 <div class="w-full flex flex-col gap-2">
-                    <label for="price" class="text-gray-50 text-md font-black">السعر (لليوم)</label>
+                    <label for="normalPrice" class="text-gray-50 text-md font-black">السعر العادي (لليوم)</label>
                     <div class="relative">
                         <input
                             class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
-                            type="number" id="price" name="price" />
+                            type="number" id="normalPrice" name="normalPrice" />
+                    </div>
+                </div>
+                <div class="w-full flex flex-col gap-2">
+                    <label for="specialPrice" class="text-gray-50 text-md font-black">السعر الاستثنائي (لليوم)</label>
+                    <div class="relative">
+                        <input
+                            class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
+                            type="number" id="specialPrice" name="specialPrice" />
                     </div>
                 </div>
             </div>
@@ -76,7 +84,7 @@
                     </div>
                 </div>
             </div>
-             <div class="w-full"></div>
+            <div class="w-full"></div>
             <div class="grid grid-rows-1 grid-cols-1 lg:grid-cols-3 gap-4">
                 <div class="w-full flex flex-col gap-2 lg:col-span-2">
                     <label for="address" class="text-gray-50 text-md font-black">العنوان</label>
@@ -130,13 +138,13 @@
 
                 </div>
             </div>
-             <div class="w-full"></div>
+            <div class="w-full"></div>
             <div class="w-full flex flex-col gap-2">
                 <label for="description" class="text-gray-50 text-md font-black">الوصف</label>
                 <textarea class="appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
                     id="description" name="description" rows="4"></textarea>
             </div>
-             <div class="w-full"></div>
+            <div class="w-full"></div>
             <div class="w-full">
                 <button type="submit"
                     class="appearance-none w-max h-[48px] text-lg flex items-center justify-center rounded-md lg:rounded-xl font-black px-10 text-gray-950 outline-none bg-yellow-600 hover:bg-yellow-400 focus:bg-yellow-400">

@@ -178,7 +178,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="2" style="padding: 20px 0px 0px 0px;">
-                                        <div style="font-size: 16px;">{!! nl2br(App\Models\Setting::first()->terms) !!}</div>
+                                        <div style="font-size: 16px;">{!! Mark::parse(App\Models\Setting::first()->terms) !!}</div>
                                     </td>
                                 </tr>
                             @endif

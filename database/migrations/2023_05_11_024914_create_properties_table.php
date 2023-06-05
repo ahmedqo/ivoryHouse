@@ -17,7 +17,8 @@ class CreatePropertiesTable extends Migration
             $table->id();
             $table->string('slug')->unique();
             $table->string('title')->unique();
-            $table->float('price');
+            $table->float('normalPrice');
+            $table->float('specialPrice');
             $table->float('area');
             $table->integer('rooms');
             $table->tinyInteger('kitchen');

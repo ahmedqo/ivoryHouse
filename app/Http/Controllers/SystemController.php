@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Functions\DateFunction;
 use App\Functions\MailFunction;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -37,7 +38,7 @@ class SystemController extends Controller
             $extra = array_reduce(json_decode($single->extra), function ($carry, $ext) {
                 return $carry + $ext->total;
             });
-            $total += ($startDate->diffInDays($endDate)  * $property->price) + $extra + Setting::first()->assurance;
+            $total += DateFunction::price(DateFunction::period($startDate, $endDate), $property->normalPrice, $property->specialPrice) + $extra + Setting::first()->assurance;
         }
         foreach ($reservation->get() as $single) {
             $property = $single->property()->first();
@@ -46,7 +47,7 @@ class SystemController extends Controller
             $extra = array_reduce(json_decode($single->extra), function ($carry, $ext) {
                 return $carry + $ext->total;
             });
-            $price = ($startDate->diffInDays($endDate) * $property->price) + $extra + Setting::first()->assurance;
+            $price = DateFunction::price(DateFunction::period($startDate, $endDate), $property->normalPrice, $property->specialPrice) + $extra + Setting::first()->assurance;
             if ($single->status === 1) {
                 $amount += $price;
                 $stay += 1;
@@ -148,6 +149,12 @@ class SystemController extends Controller
         $data = Setting::first();
         return view('setting', compact('data'));
     }
+
+    public function terms()
+    {
+        return view('terms');
+    }
+
 
     public function update(Request $request)
     {

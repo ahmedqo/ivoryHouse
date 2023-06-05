@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Functions\DateFunction;
 use App\Functions\FileFunction;
+use App\Functions\MarkFunction;
 use App\Models\Property;
 use App\Models\Setting;
 use App\Models\Reservation;
@@ -103,7 +104,8 @@ class PropertyController extends Controller
         $validator = Validator::make($request->all(), [
             'slug' => ['required', 'string', 'unique:properties'],
             'title' => ['required', 'string', 'unique:properties'],
-            'price' => ['required', 'numeric'],
+            'normalPrice' => ['required', 'numeric'],
+            'specialPrice' => ['required', 'numeric'],
             'area' => ['required', 'numeric'],
             'rooms' => ['required', 'integer'],
             'kitchen' => ['required', 'string'],
@@ -134,7 +136,8 @@ class PropertyController extends Controller
         $current = Property::create([
             'slug' => $request->slug,
             'title' => $request->title,
-            'price' => $request->price,
+            'normalPrice' => $request->normalPrice,
+            'specialPrice' => $request->specialPrice,
             'area' => $request->area,
             'rooms' => $request->rooms,
             'kitchen' => $request->kitchen,
@@ -161,7 +164,8 @@ class PropertyController extends Controller
         $validator = Validator::make($request->all(), [
             'slug' => ['required', 'string', 'unique:properties,slug,' . $id],
             'title' => ['required', 'string', 'unique:properties,title,' . $id],
-            'price' => ['required', 'numeric'],
+            'normalPrice' => ['required', 'numeric'],
+            'specialPrice' => ['required', 'numeric'],
             'area' => ['required', 'numeric'],
             'rooms' => ['required', 'integer'],
             'kitchen' => ['required', 'string'],
@@ -194,7 +198,8 @@ class PropertyController extends Controller
         Property::findorfail($id)->update([
             'slug' => $request->slug,
             'title' => $request->title,
-            'price' => $request->price,
+            'normalPrice' => $request->normalPrice,
+            'specialPrice' => $request->specialPrice,
             'area' => $request->area,
             'rooms' => $request->rooms,
             'kitchen' => $request->kitchen,

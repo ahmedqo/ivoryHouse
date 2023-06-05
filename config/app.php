@@ -230,6 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Link' => App\Functions\LinkFunction::class,
+        'Mark' => App\Functions\MarkFunction::class,
     ],
 
 ];

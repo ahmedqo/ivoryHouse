@@ -6,6 +6,7 @@ use App\Http\Controllers\SystemController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PropertyController::class, 'all'])->name("views.home.show");
+Route::get('/terms', [SystemController::class, 'terms'])->name("views.terms.show");
 Route::get('/properties/{slug}', [PropertyController::class, 'show'])->name("views.property.show");
 
 Route::post('/properties/search', [PropertyController::class, 'search'])->name('actions.properties.search');

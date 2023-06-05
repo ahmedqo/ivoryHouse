@@ -19,14 +19,17 @@
         </div>
     </div>
     <div class="w-full bg-gray-950 p-4 rounded-lg lg:rounded-2xl">
-        <table x-table x-remove="3" x-name="properties">
+        <table x-table x-remove="4" x-name="properties">
             <thead>
                 <tr>
                     <td>
                         الاسم
                     </td>
                     <td>
-                        السعر (لليوم)
+                        السعر العادي (لليوم)
+                    </td>
+                    <td>
+                        السعر الاستثنائي (لليوم)
                     </td>
                     <td>
                         العنوان
@@ -45,7 +48,10 @@
                             {{ $row->title }}
                         </td>
                         <td>
-                            {{ $row->price }} دينار
+                            {{ $row->normalPrice }} دينار
+                        </td>
+                        <td>
+                            {{ $row->specialPrice }} دينار
                         </td>
                         <td>
                             {{ $row->address }}, {{ $row->city }}, {{ $row->state }}, {{ $row->zipcode }}

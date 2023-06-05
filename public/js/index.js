@@ -863,7 +863,7 @@ class DatePicker {
             current.date = new Date();
             Class.add(current, "hidden");
             current.setAttribute("readonly", "true");
-            current._remove = (current.getAttribute(DatePicker._remove) || "").split(",").map(e => e.trim());
+            current._remove = (current.getAttribute(DatePicker._remove) || "").split(",").map(e => formatDate(new Date(e.trim())));
             const wrapper = document.createElement("div");
             Class.add(wrapper, "relative");
             wrapper.innerHTML = DatePicker._template(current.getAttribute("placeholder"));
@@ -1220,18 +1220,34 @@ const dict = {
     'today': "اليوم",
 }
 
-function validateForm(e, fields) {
+function validateForm(form, fields) {
+    var success = true,
+        message = "";
     for (let i = 0; i < fields.length; i++) {
         const fieldName = fields[i];
-        const fieldValue = e[fieldName].value;
+        const fieldValue = form[fieldName].value;
         if (fieldValue.trim() === '') {
-            (new Toaster({
-                positionX: "left",
-                positionY: "bottom",
-                width: 500
-            }))['error']('جميع الحقول مطلوبة');
-            return false;
+            message = 'جميع الحقول مطلوبة';
+            success = false;
+            break;
         }
     }
-    return true;
+
+    if (success) {
+        const period = getDateRange(document.querySelector("#startDate").value, document.querySelector("#endDate").value);
+        if (period.length < 4) {
+            message = "مدة الحجز يجب أن تكون لا تقل عن 3 أيام";
+            success = false;
+        }
+    }
+
+    if (!success) {
+        (new Toaster({
+            positionX: "left",
+            positionY: "bottom",
+            width: 500
+        }))['error'](message);
+    }
+
+    return success;
 }

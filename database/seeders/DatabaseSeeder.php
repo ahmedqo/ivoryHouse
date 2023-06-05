@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         User::create([
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@ivory-house.com',
             'phone' => '212000000000',
             'identity' => '00000000',
             'firstName' => 'john',
@@ -30,9 +30,9 @@ class DatabaseSeeder extends Seeder
             'gender' => 'male',
         ]);
         Setting::create([
-            'assurance' => 1,
-            'icecream' => 1,
-            'kayak' => 1,
+            'assurance' => 100,
+            'icecream' => 50,
+            'kayak' => 10,
         ]);
     }
 }

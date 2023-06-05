@@ -23,7 +23,7 @@
         <form action="{{ route('actions.properties.edit', $data->id) }}" method="POST" enctype="multipart/form-data"
             class="w-full flex flex-col gap-4">
             @csrf
-            <div class="grid grid-rows-1 grid-cols-1 lg:grid-cols-3 gap-4">
+            <div class="grid grid-rows-1 grid-cols-1 lg:grid-cols-4 gap-4">
                 <div class="w-full flex flex-col gap-2 lg:col-span-2">
                     <label for="title" class="text-gray-50 text-md font-black">الاسم</label>
                     <div class="relative">
@@ -34,11 +34,19 @@
                     </div>
                 </div>
                 <div class="w-full flex flex-col gap-2">
-                    <label for="price" class="text-gray-50 text-md font-black">السعر (لليوم)</label>
+                    <label for="normalPrice" class="text-gray-50 text-md font-black">السعر العادي (لليوم)</label>
                     <div class="relative">
                         <input
                             class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
-                            type="number" id="price" name="price" value="{{ $data->price }}" />
+                            type="number" id="normalPrice" name="normalPrice" value="{{ $data->normalPrice }}" />
+                    </div>
+                </div>
+                <div class="w-full flex flex-col gap-2">
+                    <label for="specialPrice" class="text-gray-50 text-md font-black">السعر الاستثنائي (لليوم)</label>
+                    <div class="relative">
+                        <input
+                            class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
+                            type="number" id="specialPrice" name="specialPrice" value="{{ $data->specialPrice }}" />
                     </div>
                 </div>
             </div>
@@ -85,7 +93,7 @@
                     </div>
                 </div>
             </div>
-             <div class="w-full"></div>
+            <div class="w-full"></div>
             <div class="grid grid-rows-1 grid-cols-1 lg:grid-cols-3 gap-4">
                 <div class="w-full flex flex-col gap-2 lg:col-span-2">
                     <label for="address" class="text-gray-50 text-md font-black">العنوان</label>
@@ -120,7 +128,7 @@
                         id="zipcode" name="zipcode" type="number" value="{{ $data->zipcode }}" />
                 </div>
             </div>
-             <div class="w-full"></div>
+            <div class="w-full"></div>
             <div class="w-full flex flex-col gap-2">
                 <label for="imagesUpload" class="text-gray-50 text-md font-black">الصور</label>
                 <input type="file" id="images" name="images[]" class="hidden" multiple>

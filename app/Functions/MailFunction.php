@@ -108,7 +108,7 @@ class MailFunction
         $extra = array_reduce(json_decode($data['reservation']->extra), function ($carry, $ext) {
             return $carry + $ext->total;
         });
-        $price = $startDate->diffInDays($endDate) * $property->price;
+        $price =  DateFunction::price(DateFunction::period($startDate, $endDate), $property->normalPrice, $property->specialPrice);
         $image = FileFunction::all($data['id'])[0]->name;
 
         return [

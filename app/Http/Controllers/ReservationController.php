@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Functions\DateFunction;
 use App\Functions\MailFunction;
 use App\Models\Property;
 use App\Models\Setting;
@@ -109,7 +110,7 @@ class ReservationController extends Controller
             'email' => ['required', 'email'],
             'phone' => ['required', 'string'],
             'startDate' => ['required', 'date', 'after_or_equal:today'],
-            'endDate' => ['required', 'date', 'after:startDate'],
+            'endDate' => ['required', 'date', 'after:startDate +3 days'],
             'socialNumber' => ['required', 'string'],
             'address' => ['required', 'string'],
         ]);
@@ -160,7 +161,7 @@ class ReservationController extends Controller
             ]);
         }
 
-        $price += Carbon::parse($startDate)->diffInDays(Carbon::parse($endDate)) * $property->price;
+        $price += DateFunction::price(DateFunction::period($startDate, $endDate), $property->normalPrice, $property->specialPrice);
 
         $current = Reservation::create([
             'property' => $id,
@@ -202,7 +203,7 @@ class ReservationController extends Controller
             'email' => ['required', 'email'],
             'phone' => ['required', 'string'],
             'startDate' => ['required', 'date'],
-            'endDate' => ['required', 'date', 'after:startDate'],
+            'endDate' => ['required', 'date', 'after:startDate +3 days'],
             'socialNumber' => ['required', 'string'],
             'address' => ['required', 'string'],
         ]);

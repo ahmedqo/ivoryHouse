@@ -91,7 +91,8 @@
                 class="p-4 lg:p-6 flex flex-col gap-4 lg:gap-6 lg:col-span-7 rounded-t-lg lg:rounded-l-2xl lg:rounded-t-none bg-gray-950 order-2 lg:order-1 z-[2]">
                 <div class="w-full flex flex-wrap items-center gap-2 lg:mt-2">
                     <h1 class="flex-1 text-xl lg:text-3xl font-black text-gray-50">{{ $data->title }}</h1>
-                    <span class="w-max block text-lg lg:text-2xl font-black text-gray-50">{{ $data->price }}
+                    <span
+                        class="w-max block text-lg lg:text-2xl font-black text-gray-50">{{ in_array(Carbon\Carbon::now()->dayOfWeek, App\Functions\DateFunction::$WEEKEND) ? $data->specialPrice : $data->normalPrice }}
                         دينار</span>
                     <p class="w-full text-md lg:text-lg text-gray-50 flex gap-1">
                         <svg class="pointer-events-none w-4 lg:w-6 h-4 lg:h-6 text-yellow-600 mt-1" fill="currentColor"
@@ -110,7 +111,7 @@
                             <ul>
                                 @foreach ($images as $image)
                                     <li
-                                        class="relative after:absolute after:content-[''] after:inset-0 after:block after:bg-gray-900 after:bg-opacity-70">
+                                        class="relative after:absolute after:backdrop-blur-sm after:content-[''] after:inset-0 after:block after:bg-gray-900 after:bg-opacity-70">
                                         <img src="{{ asset('storage/files/' . $image->name) }}"
                                             class="absolute top-0 left-0 w-full h-full object-cover z-[0]" />
                                         <img src="{{ asset('storage/files/' . $image->name) }}"
@@ -195,9 +196,11 @@
                 </ul>
                 <div class="w-full flex flex-col gap-2">
                     <h3 class="text-gray-50 text-xl font-black mb-2">الوصف:</h3>
-                    <p class="text-md lg:text-lg text-gray-50">
-                        {!! nl2br($data->description) !!}
-                    </p>
+                    <div class="text-md lg:text-lg text-gray-50">
+                        <div class="revert">
+                            {!! Mark::parse($data->description) !!}
+                        </div>
+                    </div>
                 </div>
             </div>
             <div
@@ -444,11 +447,26 @@
                         </div>
                         <div class="flex-1 flex-col lg:flex-row gap-2 lg:gap-0 hidden lg:block"></div>
                     </div>
-                    <p class="text-yellow-600 text-sm lg:text-md font-black mt-2">
-                        عند تأكيد الحجز سيتم إرسال رسالة عبر البريد الإلكتروني تحتوي على جميع التفاصيل
-                    </p>
-                    <button type="submit"
-                        class="absolute top-full left-1/2 -translate-x-1/2 -mt-[24px] appearance-none w-max h-[48px] mx-auto text-lg flex items-center justify-center rounded-md lg:rounded-xl font-black px-10 text-gray-950 outline-none bg-yellow-600 hover:bg-yellow-400 focus:bg-yellow-400">
+                    <div class="flex flex-col gap-2 mt-2">
+                        <label class="w-max flex gap-4 flex-wrap items-center">
+                            <input id="check" type="checkbox" class="sr-only peer">
+                            <div
+                                class="relative w-[36px] h-[22px] bg-[#4c4643] rounded-xl peer peer-focus:outline peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-gray-50 after:rounded-lg after:h-[14px] after:w-[14px] after:transition-all peer-checked:bg-yellow-600">
+                            </div>
+                            <span class="text-gray-50 text-sm lg:text-base font-black">
+                                أوافق على جميع
+                                <a href="{{ route('views.terms.show') }}" target="_blank"
+                                    class="text-yellow-600 underline">
+                                    الشروط والأحكام
+                                </a>
+                            </span>
+                        </label>
+                        <p class="text-yellow-600 text-sm lg:text-base font-black">
+                            عند تأكيد الحجز سيتم إرسال رسالة عبر البريد الإلكتروني تحتوي على جميع التفاصيل
+                        </p>
+                    </div>
+                    <button id="btn" type="submit"
+                        class="absolute top-full left-1/2 -translate-x-1/2 -mt-[24px] appearance-none w-max h-[48px] mx-auto text-lg flex items-center justify-center rounded-md lg:rounded-xl font-black px-10 text-gray-950 outline-none pointer-events-none bg-yellow-200 hover:bg-yellow-400 focus:bg-yellow-400">
                         <span>إحجز الآن</span>
                     </button>
                 </form>
@@ -528,6 +546,19 @@
                     document.querySelector(`#${key}`)?.setAttribute("value", value);
             }
         }
+
+        const check = document.querySelector("#check");
+        const btn = document.querySelector("#btn");
+
+        check.addEventListener("click", e => {
+            if (e.target.checked) {
+                btn.classList.remove("pointer-events-none", "bg-yellow-200");
+                btn.classList.add("bg-yellow-600");
+            } else {
+                btn.classList.add("pointer-events-none", "bg-yellow-200");
+                btn.classList.remove("bg-yellow-600");
+            }
+        });
 
         getSearchData();
     </script>

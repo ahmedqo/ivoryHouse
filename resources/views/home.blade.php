@@ -139,9 +139,9 @@
         <section background-image class="w-full pt-32 pb-20">
             <div id="propreties" class="mx-auto container p-4 grid grid-cols-1 grid-rows-1 lg:grid-cols-3 gap-4">
                 @foreach ($data as $row)
-                    <a href="{{ route('views.property.show', $row->slug) }}" class="block">
-                        <div
-                            class="aspect-video p-2 rounded-lg lg:rounded-2xl rounded-br-none lg:rounded-br-none border border-yellow-600 relative">
+                    <div class="block">
+                        <a href="{{ route('views.property.show', $row->slug) }}"
+                            class="block aspect-video p-2 rounded-lg lg:rounded-2xl rounded-br-none lg:rounded-br-none border border-yellow-600 relative">
                             @if ($row->reserved)
                                 <div
                                     class="absolute inset-2 bg-gray-950 bg-opacity-50 rounded-md lg:rounded-xl rounded-br-none lg:rounded-br-none pointer-events-none">
@@ -156,12 +156,62 @@
                                 <img src="{{ asset('storage/files/' . $row->images[0]->name) }}"
                                     class="w-full h-full object-cover hover:scale-150 transition-transform bg-gray-50" />
                             </div>
+                        </a>
+                        <div class="w-full flex justify-between">
+                            <div
+                                class="w-max text-gray-950 font-black text-lg lg:text-xl bg-yellow-600 rounded-bl-[4rem] rounded-br-lg lg:rounded-br-2xl px-2 py-1 pe-6 -mt-2">
+                                {{ in_array(Carbon\Carbon::now()->dayOfWeek, App\Functions\DateFunction::$WEEKEND) ? $row->specialPrice : $row->normalPrice }}
+                                دينار
+                            </div>
+                            <ul class="w-max flex justify-center gap-2 me-4">
+                                <li title="المساحة" class="w-max flex items-center flex-row-reverse gap-2">
+                                    <h3 class="text-xs font-black text-gray-50 text-center">
+                                        {{ $row->area }}</h3>
+                                    <svg class="block mx-auto h-6 w-6 pointer-events-none text-gray-50"
+                                        fill="currentcolor" viewBox="0 96 960 960">
+                                        <path
+                                            d="M679 715V377H341v-91h338q37.175 0 64.088 26.912Q770 339.825 770 377v338h-91Zm45.509 305q-20.141 0-32.825-13.33Q679 993.35 679 974V866H281q-36.413 0-63.706-26.912Q190 812.175 190 775V377H82q-19.775 0-32.388-13.358Q37 350.284 37 331.842 37 312 49.612 299 62.225 286 82 286h108V178q0-19.775 13.358-32.388Q216.716 133 235.158 133 255 133 268 145.612q13 12.613 13 32.388v597h597q20.2 0 33.1 13.375 12.9 13.376 12.9 32.116 0 20.141-12.9 32.825Q898.2 866 878 866H770v108q0 19.35-13.375 32.67-13.376 13.33-32.116 13.33Z" />
+                                    </svg>
+                                </li>
+                                <li title="الغرف" class="w-max flex items-center flex-row-reverse gap-2">
+                                    <h3 class="text-xs font-black text-gray-50 text-center">
+                                        {{ $row->rooms }}</h3>
+                                    <svg class="block mx-auto h-6 w-6 pointer-events-none text-gray-50"
+                                        fill="currentcolor" viewBox="0 96 960 960">
+                                        <path
+                                            d="M104.684 891q-20.316 0-33-12.5Q59 866 59 845V615q0-27.859 9.5-53.43Q78 536 99 523.219V419.251q0-54.501 36.5-91.876Q172 290 226 290h182q21 0 39.386 9.031Q465.772 308.062 480 322q14.228-13.938 32.114-22.969Q530 290 551 290h182q53.667 0 91.333 37.375Q862 364.75 862 419.251v103.968Q882 536 892 561.57q10 25.571 10 53.43v230q0 21-13.088 33.5-13.087 12.5-32.816 12.5-19.728 0-32.912-12.5Q810 866 810 845v-34H150v34q0 21-13.2 33.5T104.684 891ZM508 518h262v-99.667q0-15.991-10.575-26.162T733 382H539.48q-14.48 0-22.98 10.808-8.5 10.809-8.5 25.525V518Zm-318 0h262v-99.667q0-14.716-8.5-25.525Q435 382 421 382H226.48q-15.755 0-26.117 10.671Q190 403.342 190 418.333V518Z" />
+                                    </svg>
+                                </li>
+                                @if ($row->kitchen)
+                                    <li title="المطبخ" class="w-max flex items-center flex-row-reverse gap-2">
+                                        <svg class="block mx-auto h-6 w-6 pointer-events-none text-gray-50"
+                                            fill="currentcolor" viewBox="0 96 960 960">
+                                            <path
+                                                d="M171 931q-19.875 0-32.938-13.062Q125 904.875 125 885V553H78q-15.875 0-27.938-11.662Q38 529.677 38 513.351t12.063-28.338Q62.124 473 78 473h132q-34.4 0-58.2-24.088Q128 424.825 128 391V260q0-20.3 12.575-33.15Q153.15 214 174 214h167q20.3 0 33.15 12.85Q387 239.7 387 260v131q0 33.825-24.381 57.912Q338.237 473 304 473h359V339q0-19.725-12.452-32.362Q638.097 294 618.212 294q-12.585 0-22.399 5-9.813 5-15.213 13-8.6 12-17.1 18-8.5 6-18.5 6-26.66 0-35.83-19-9.17-19 3.727-39.833 16.967-29.133 44.004-46.15T618.264 214q53.569 0 89.653 36.167Q744 286.333 744 338v135h139q15.875 0 27.938 12.1Q923 497.201 923 514.175q0 16.125-12.062 27.475Q898.875 553 883 553h-47v332q0 19.875-13.338 32.938Q809.325 931 790 931H171Zm270-80h79V553h-79v298Z" />
+                                        </svg>
+                                    </li>
+                                @endif
+                                @if ($row->garage)
+                                    <li title="الكراج" class="w-max flex items-center flex-row-reverse gap-2">
+                                        <svg class="block mx-auto h-6 w-6 pointer-events-none text-gray-50"
+                                            fill="currentcolor" viewBox="0 96 960 960">
+                                            <path
+                                                d="M138 958V444l342-257 343 257v514H671V527H289v431H138Zm231-80h222v-96H369v96Zm0-176h222v-96H369v96Z" />
+                                        </svg>
+                                    </li>
+                                @endif
+                                @if ($row->garden)
+                                    <li title="الحديقة" class="w-max flex items-center flex-row-reverse gap-2">
+                                        <svg class="block mx-auto h-6 w-6 pointer-events-none text-gray-50"
+                                            fill="currentcolor" viewBox="0 96 960 960">
+                                            <path
+                                                d="M480 866q0-44.541-17.471-84.871-17.472-40.329-48.752-72.159-28.24-26.453-61.044-42.695Q319.93 650.033 283 644q-10.714 0-18.357 7.37Q257 658.74 258 669q5.925 37 21.281 70.673Q294.636 773.346 323 800q31.183 30.606 71.869 48.303Q435.554 866 480 866Zm.21-212q25.371 0 41.671-15.71 16.301-15.709 16.301-42.29v-8Q544 595 554 597t18.699 2q26.287 0 42.294-15.21Q631 568.581 631 542.565q0-20.365-9-33.608-9-13.243-22-23.1 13-4.857 22-20.498 9-15.642 9-34.831 0-25.826-16.287-41.677Q598.425 373 573.004 373q-8.51 0-18.481 2-9.97 2-15.942 9.057V376q0-25.286-16.71-41.643T479.581 318q-25.581 0-41.763 16.419-16.182 16.42-16.182 41.581v8Q416 377 406 375t-18.548-2q-26.536 0-42.494 15.87Q329 404.741 329 430.554q0 19.178 8.5 32.812Q346 477 361 486.5q-15 6.5-23.5 20.9-8.5 14.4-8.5 35.165 0 26.016 16.363 41.225Q361.727 599 387.085 599q8.571 0 19.089-2 10.519-2 15.536-8.8v7.8q0 26.643 16.564 42.321Q454.839 654 480.21 654Zm-.278-90q-33.867 0-55.4-22.618Q403 518.765 403 486.558q0-33.493 21.6-55.526Q446.201 409 480.068 409q33.867 0 55.4 21.871Q557 452.742 557 486.509q0 32.588-21.6 55.039Q513.799 564 479.932 564ZM480 866q44.6 0 84.9-17.471 40.3-17.472 72.13-49.752 26.453-27.24 42.695-60.044Q695.967 705.93 702 669q1-10.26-6.643-17.63Q687.714 644 677 644q-36.929 6.066-70.307 22.513Q573.314 682.961 546 709q-30.606 31.8-48.303 72.276Q480 821.753 480 866ZM150 997q-37.175 0-64.088-26.912Q59 943.175 59 906V246q0-37.588 26.912-64.794Q112.825 154 150 154h660q37.588 0 64.794 27.206Q902 208.412 902 246v660q0 37.175-27.206 64.088Q847.588 997 810 997H150Z" />
+                                        </svg>
+                                    </li>
+                                @endif
+                            </ul>
                         </div>
-                        <div
-                            class="w-max text-gray-950 font-black text-lg lg:text-xl bg-yellow-600 rounded-bl-[4rem] rounded-br-lg lg:rounded-br-2xl px-2 py-1 pe-6 -mt-2">
-                            {{ $row->price }} دينار
-                        </div>
-                    </a>
+                    </div>
                 @endforeach
             </div>
         </section>
@@ -250,28 +300,79 @@
         function template(row, startDate, endDate) {
             const link = "{{ route('views.property.show', ':slug') }}".replace(/:slug/g, row.slug);
             const image = "{{ asset('storage/files/') }}" + "/" + row.images[0].name;
+            const days = {!! json_encode(App\Functions\DateFunction::$WEEKEND) !!}
             return `
-                <a href="${link}?startDate=${startDate}&endDate=${endDate}" class="block">
-                    <div
-                        class="aspect-video p-2 rounded-lg lg:rounded-2xl rounded-br-none lg:rounded-br-none border border-yellow-600 relative">
+                <div class="block">
+                    <a href="${link}?startDate=${startDate}&endDate=${endDate}"
+                        class="block aspect-video p-2 rounded-lg lg:rounded-2xl rounded-br-none lg:rounded-br-none border border-yellow-600 relative">
                         ${row.reserved ? `<div
-                                                                class="absolute inset-2 bg-gray-950 bg-opacity-50 rounded-md lg:rounded-xl rounded-br-none lg:rounded-br-none pointer-events-none">
-                                                            </div>
-                                                            <div
-                                                                class="absolute w-max left-1/2 rounded-b-md -translate-x-1/2 bg-yellow-600 px-2 py-1">
-                                                                محجوز
-                                                            </div>` : ``}
+                                                                                                                    class="absolute inset-2 bg-gray-950 bg-opacity-50 rounded-md lg:rounded-xl rounded-br-none lg:rounded-br-none pointer-events-none">
+                                                                                                                </div>
+                                                                                                                <div
+                                                                                                                    class="absolute w-max left-1/2 rounded-b-md -translate-x-1/2 bg-yellow-600 px-2 py-1">
+                                                                                                                    محجوز
+                                                                                                                </div>` : ``}
                         <div
                             class="w-full h-full overflow-hidden rounded-md lg:rounded-xl rounded-br-none lg:rounded-br-none">
                             <img src="${image}"
                                 class="w-full h-full object-cover hover:scale-150 transition-transform bg-gray-50" />
                         </div>
+                    </a>
+                    <div class="w-full flex justify-between">
+                        <div
+                            class="w-max text-gray-950 font-black text-lg lg:text-xl bg-yellow-600 rounded-bl-[4rem] rounded-br-lg lg:rounded-br-2xl px-2 py-1 pe-6 -mt-2">
+                            ${days.includes(new Date().getDay()) ? row.specialPrice : row.normalPrice}
+                            دينار
+                        </div>
+                        <ul class="w-max flex justify-center gap-2 me-4">
+                            <li title="المساحة" class="w-max flex items-center flex-row-reverse gap-2">
+                                <h3 class="text-xs font-black text-gray-50 text-center">
+                                    ${ row.area }</h3>
+                                <svg class="block mx-auto h-6 w-6 pointer-events-none text-gray-50"
+                                    fill="currentcolor" viewBox="0 96 960 960">
+                                    <path
+                                        d="M679 715V377H341v-91h338q37.175 0 64.088 26.912Q770 339.825 770 377v338h-91Zm45.509 305q-20.141 0-32.825-13.33Q679 993.35 679 974V866H281q-36.413 0-63.706-26.912Q190 812.175 190 775V377H82q-19.775 0-32.388-13.358Q37 350.284 37 331.842 37 312 49.612 299 62.225 286 82 286h108V178q0-19.775 13.358-32.388Q216.716 133 235.158 133 255 133 268 145.612q13 12.613 13 32.388v597h597q20.2 0 33.1 13.375 12.9 13.376 12.9 32.116 0 20.141-12.9 32.825Q898.2 866 878 866H770v108q0 19.35-13.375 32.67-13.376 13.33-32.116 13.33Z" />
+                                </svg>
+                            </li>
+                            <li title="الغرف" class="w-max flex items-center flex-row-reverse gap-2">
+                                <h3 class="text-xs font-black text-gray-50 text-center">
+                                    ${ row.rooms }</h3>
+                                <svg class="block mx-auto h-6 w-6 pointer-events-none text-gray-50"
+                                    fill="currentcolor" viewBox="0 96 960 960">
+                                    <path
+                                        d="M104.684 891q-20.316 0-33-12.5Q59 866 59 845V615q0-27.859 9.5-53.43Q78 536 99 523.219V419.251q0-54.501 36.5-91.876Q172 290 226 290h182q21 0 39.386 9.031Q465.772 308.062 480 322q14.228-13.938 32.114-22.969Q530 290 551 290h182q53.667 0 91.333 37.375Q862 364.75 862 419.251v103.968Q882 536 892 561.57q10 25.571 10 53.43v230q0 21-13.088 33.5-13.087 12.5-32.816 12.5-19.728 0-32.912-12.5Q810 866 810 845v-34H150v34q0 21-13.2 33.5T104.684 891ZM508 518h262v-99.667q0-15.991-10.575-26.162T733 382H539.48q-14.48 0-22.98 10.808-8.5 10.809-8.5 25.525V518Zm-318 0h262v-99.667q0-14.716-8.5-25.525Q435 382 421 382H226.48q-15.755 0-26.117 10.671Q190 403.342 190 418.333V518Z" />
+                                </svg>
+                            </li>
+                            ${row.kitchen ? `
+                                        <li title="المطبخ" class="w-max flex items-center flex-row-reverse gap-2">
+                                            <svg class="block mx-auto h-6 w-6 pointer-events-none text-gray-50"
+                                                fill="currentcolor" viewBox="0 96 960 960">
+                                                <path
+                                                    d="M171 931q-19.875 0-32.938-13.062Q125 904.875 125 885V553H78q-15.875 0-27.938-11.662Q38 529.677 38 513.351t12.063-28.338Q62.124 473 78 473h132q-34.4 0-58.2-24.088Q128 424.825 128 391V260q0-20.3 12.575-33.15Q153.15 214 174 214h167q20.3 0 33.15 12.85Q387 239.7 387 260v131q0 33.825-24.381 57.912Q338.237 473 304 473h359V339q0-19.725-12.452-32.362Q638.097 294 618.212 294q-12.585 0-22.399 5-9.813 5-15.213 13-8.6 12-17.1 18-8.5 6-18.5 6-26.66 0-35.83-19-9.17-19 3.727-39.833 16.967-29.133 44.004-46.15T618.264 214q53.569 0 89.653 36.167Q744 286.333 744 338v135h139q15.875 0 27.938 12.1Q923 497.201 923 514.175q0 16.125-12.062 27.475Q898.875 553 883 553h-47v332q0 19.875-13.338 32.938Q809.325 931 790 931H171Zm270-80h79V553h-79v298Z" />
+                                            </svg>
+                                        </li>`
+                            : ""}
+                            ${row.garage ? `
+                                        <li title="الكراج" class="w-max flex items-center flex-row-reverse gap-2">
+                                            <svg class="block mx-auto h-6 w-6 pointer-events-none text-gray-50"
+                                                fill="currentcolor" viewBox="0 96 960 960">
+                                                <path
+                                                    d="M138 958V444l342-257 343 257v514H671V527H289v431H138Zm231-80h222v-96H369v96Zm0-176h222v-96H369v96Z" />
+                                            </svg>
+                                        </li>`
+                            : ""}
+                            ${row.garden ? `
+                                        <li title="الحديقة" class="w-max flex items-center flex-row-reverse gap-2">
+                                            <svg class="block mx-auto h-6 w-6 pointer-events-none text-gray-50"
+                                                fill="currentcolor" viewBox="0 96 960 960">
+                                                <path
+                                                    d="M480 866q0-44.541-17.471-84.871-17.472-40.329-48.752-72.159-28.24-26.453-61.044-42.695Q319.93 650.033 283 644q-10.714 0-18.357 7.37Q257 658.74 258 669q5.925 37 21.281 70.673Q294.636 773.346 323 800q31.183 30.606 71.869 48.303Q435.554 866 480 866Zm.21-212q25.371 0 41.671-15.71 16.301-15.709 16.301-42.29v-8Q544 595 554 597t18.699 2q26.287 0 42.294-15.21Q631 568.581 631 542.565q0-20.365-9-33.608-9-13.243-22-23.1 13-4.857 22-20.498 9-15.642 9-34.831 0-25.826-16.287-41.677Q598.425 373 573.004 373q-8.51 0-18.481 2-9.97 2-15.942 9.057V376q0-25.286-16.71-41.643T479.581 318q-25.581 0-41.763 16.419-16.182 16.42-16.182 41.581v8Q416 377 406 375t-18.548-2q-26.536 0-42.494 15.87Q329 404.741 329 430.554q0 19.178 8.5 32.812Q346 477 361 486.5q-15 6.5-23.5 20.9-8.5 14.4-8.5 35.165 0 26.016 16.363 41.225Q361.727 599 387.085 599q8.571 0 19.089-2 10.519-2 15.536-8.8v7.8q0 26.643 16.564 42.321Q454.839 654 480.21 654Zm-.278-90q-33.867 0-55.4-22.618Q403 518.765 403 486.558q0-33.493 21.6-55.526Q446.201 409 480.068 409q33.867 0 55.4 21.871Q557 452.742 557 486.509q0 32.588-21.6 55.039Q513.799 564 479.932 564ZM480 866q44.6 0 84.9-17.471 40.3-17.472 72.13-49.752 26.453-27.24 42.695-60.044Q695.967 705.93 702 669q1-10.26-6.643-17.63Q687.714 644 677 644q-36.929 6.066-70.307 22.513Q573.314 682.961 546 709q-30.606 31.8-48.303 72.276Q480 821.753 480 866ZM150 997q-37.175 0-64.088-26.912Q59 943.175 59 906V246q0-37.588 26.912-64.794Q112.825 154 150 154h660q37.588 0 64.794 27.206Q902 208.412 902 246v660q0 37.175-27.206 64.088Q847.588 997 810 997H150Z" />
+                                            </svg>
+                                        </li>`
+                            : ""}
+                        </ul>
                     </div>
-                    <div
-                        class="w-max text-gray-950 font-black text-lg lg:text-xl bg-yellow-600 rounded-bl-[4rem] rounded-br-lg lg:rounded-br-2xl px-2 py-1 pe-6 -mt-2">
-                        ${row.price} دينار
-                    </div>
-                </a>
+                </div>
             `;
         }
 
