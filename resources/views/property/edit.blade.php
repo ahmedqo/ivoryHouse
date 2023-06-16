@@ -108,7 +108,7 @@
                         id="map" name="map" type="text" value="{{ $data->map }}" />
                 </div>
             </div>
-            <div class="grid grid-rows-1 grid-cols-1 lg:grid-cols-3 gap-4">
+            {{-- <div class="grid grid-rows-1 grid-cols-1 lg:grid-cols-3 gap-4">
                 <div class="w-full flex flex-col gap-2">
                     <label for="state" class="text-gray-50 text-md font-black">الولاية</label>
                     <input
@@ -127,7 +127,7 @@
                         class="appearance-none bg-[#4c4643] text-gray-50 h-[48px] text-lg rounded-md lg:rounded-xl block w-full py-2 px-4"
                         id="zipcode" name="zipcode" type="number" value="{{ $data->zipcode }}" />
                 </div>
-            </div>
+            </div> --}}
             <div class="w-full"></div>
             <div class="w-full flex flex-col gap-2">
                 <label for="imagesUpload" class="text-gray-50 text-md font-black">الصور</label>

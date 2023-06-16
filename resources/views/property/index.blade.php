@@ -54,7 +54,7 @@
                             {{ $row->specialPrice }} دينار
                         </td>
                         <td>
-                            {{ $row->address }}, {{ $row->city }}, {{ $row->state }}, {{ $row->zipcode }}
+                            {{ $row->address }}
                         </td>
                         <td>
                             <div class="w-max h-full mx-auto flex items-center justify-center rounded-md overflow-hidden">

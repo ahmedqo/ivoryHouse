@@ -22,7 +22,7 @@ class ContactMail extends Mailable
     {
         $this->data = $data;
         $this->from =  [
-            'address' => $data['email'],
+            'address' => env('MAIL_FROM_ADDRESS'),
         ];
     }
 

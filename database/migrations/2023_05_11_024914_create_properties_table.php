@@ -26,9 +26,9 @@ class CreatePropertiesTable extends Migration
             $table->tinyInteger('garden');
             $table->string('map');
             $table->string('address');
-            $table->string('state');
-            $table->string('city');
-            $table->string('zipcode');
+            $table->string('state')->nullable();;
+            $table->string('city')->nullable();;
+            $table->string('zipcode')->nullable();;
             $table->longText('description')->nullable();
             $table->timestamps();
         });

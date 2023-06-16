@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}{{ env('PUBLIC_VERSION') }}" />
     <title>@yield('title')</title>
 </head>
 
@@ -16,7 +16,7 @@
             @yield('content')
         </section>
     </main>
-    <script src="{{ asset('js/index.js') }}"></script>
+    <script src="{{ asset('js/index.js') }}{{ env('PUBLIC_VERSION') }}"></script>
     @if (Session::has('message'))
         <script>
             const info = {!! json_encode(Session::all()) !!};

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,7 @@ Route::group(["prefix" => "admin"], function () {
 
     Route::group(['middleware' => ['auth']], function () {
         Route::get('/logout', [AuthController::class, 'logout'])->name('actions.logout');
+        Route::get('/payments', [PaymentController::class, 'index'])->name('views.payments.index');
         require __DIR__ . '/system.php';
         require __DIR__ . '/profile.php';
         require __DIR__ . '/user.php';

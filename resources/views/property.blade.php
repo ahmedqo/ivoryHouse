@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}{{ env('PUBLIC_VERSION') }}" />
     <title>{{ $data->title }}</title>
 </head>
 
@@ -30,7 +30,7 @@
                 </li>
             </ul>
         </div>
-        <div class="z-[-1] absolute inset-0 bg-gray-950 bg-opacity-50"></div>
+        {{-- <div class="z-[-1] absolute inset-0 bg-gray-950 bg-opacity-50"></div> --}}
         <nav class="w-full bg-gray-950">
             <ul class="container mx-auto p-4 flex gap-4 items-center">
                 <li>
@@ -57,7 +57,7 @@
         </nav>
         <div class="mx-auto p-4 pb-0 container">
             <div class="w-full lg:w-10/12 mx-auto bg-gray-950 p-4 lg:p-8 relative top-8 rounded-lg lg:rounded-2xl">
-                <h1 class="text-gray-50 text-2xl lg:text-3xl font-black mb-6">إحجز فلتك الان</h1>
+                <h1 class="text-gray-50 text-2xl lg:text-3xl font-black mb-6">إحجز شاليهك الان</h1>
                 <form action="{{ route('views.home.show') }}"
                     class="w-full flex flex-col lg:flex-row lg:flex-wrap gap-4">
                     <div class="flex-1 relative hidden">
@@ -100,8 +100,7 @@
                             <path
                                 d="m657 586 84 75v92H526v235l-46 45-45-45V753H220v-92l78-75V271h-50v-91h459v91h-50v315Z" />
                         </svg>
-                        <span>{{ $data->address }}, {{ $data->city }}, {{ $data->state }},
-                            {{ $data->zipcode }}</span>
+                        <span>{{ $data->address }}</span>
                     </p>
                 </div>
                 <div class="w-full px-4">
@@ -187,9 +186,9 @@
                     @if ($data->garden)
                         <li title="الحديقة" class="w-max flex items-center flex-row-reverse gap-2">
                             <svg class="block mx-auto h-6 w-6 lg:h-8 lg:w-8 pointer-events-none text-gray-50"
-                                fill="currentcolor" viewBox="0 96 960 960">
+                                fill="currentcolor" viewBox="0 -960 960 960">
                                 <path
-                                    d="M480 866q0-44.541-17.471-84.871-17.472-40.329-48.752-72.159-28.24-26.453-61.044-42.695Q319.93 650.033 283 644q-10.714 0-18.357 7.37Q257 658.74 258 669q5.925 37 21.281 70.673Q294.636 773.346 323 800q31.183 30.606 71.869 48.303Q435.554 866 480 866Zm.21-212q25.371 0 41.671-15.71 16.301-15.709 16.301-42.29v-8Q544 595 554 597t18.699 2q26.287 0 42.294-15.21Q631 568.581 631 542.565q0-20.365-9-33.608-9-13.243-22-23.1 13-4.857 22-20.498 9-15.642 9-34.831 0-25.826-16.287-41.677Q598.425 373 573.004 373q-8.51 0-18.481 2-9.97 2-15.942 9.057V376q0-25.286-16.71-41.643T479.581 318q-25.581 0-41.763 16.419-16.182 16.42-16.182 41.581v8Q416 377 406 375t-18.548-2q-26.536 0-42.494 15.87Q329 404.741 329 430.554q0 19.178 8.5 32.812Q346 477 361 486.5q-15 6.5-23.5 20.9-8.5 14.4-8.5 35.165 0 26.016 16.363 41.225Q361.727 599 387.085 599q8.571 0 19.089-2 10.519-2 15.536-8.8v7.8q0 26.643 16.564 42.321Q454.839 654 480.21 654Zm-.278-90q-33.867 0-55.4-22.618Q403 518.765 403 486.558q0-33.493 21.6-55.526Q446.201 409 480.068 409q33.867 0 55.4 21.871Q557 452.742 557 486.509q0 32.588-21.6 55.039Q513.799 564 479.932 564ZM480 866q44.6 0 84.9-17.471 40.3-17.472 72.13-49.752 26.453-27.24 42.695-60.044Q695.967 705.93 702 669q1-10.26-6.643-17.63Q687.714 644 677 644q-36.929 6.066-70.307 22.513Q573.314 682.961 546 709q-30.606 31.8-48.303 72.276Q480 821.753 480 866ZM150 997q-37.175 0-64.088-26.912Q59 943.175 59 906V246q0-37.588 26.912-64.794Q112.825 154 150 154h660q37.588 0 64.794 27.206Q902 208.412 902 246v660q0 37.175-27.206 64.088Q847.588 997 810 997H150Z" />
+                                    d="M433-69q-105 0-178.5-73.5T181-320v-93q71 0 135.5 26T429-313v-120q-87-15-143.5-85T229-680v-149q0-30 26-42.5t49 7.5l75 64 66-79q13-16 35-16t36 16l66 79 75-64q22-20 49-7.5t27 42.5v149q0 92-57.5 162T533-433v120q46-48 110.5-74T780-413v93q0 104-74 177.5T528-69h-95Z" />
                             </svg>
                         </li>
                     @endif
@@ -322,7 +321,7 @@
                                 class="text-gray-50 text-md lg:text-lg flex items-center lg:h-[48px] font-black lg:w-[160px]">موعد
                                 الدخول</label>
                             <div class="flex-1 rounded-md lg:rounded-xl bg-[#4c4643] text-gray-50">
-                                <input x-date x-remove="{{ $data->dates }}" type="date" id="startDate"
+                                <input x-date x-remove="{{ $data->dates }}" type="date" id="startDate" data-date
                                     name="startDate"
                                     class="appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block w-full h-[48px] py-2 px-4" />
                             </div>
@@ -332,7 +331,7 @@
                                 class="text-gray-50 text-md lg:text-lg flex items-center lg:h-[48px] font-black lg:w-[160px]">موعد
                                 الخروج</label>
                             <div class="flex-1 rounded-md lg:rounded-xl bg-[#4c4643] text-gray-50">
-                                <input x-date x-remove="{{ $data->dates }}" type="date" id="endDate"
+                                <input x-date x-remove="{{ $data->dates }}" type="date" id="endDate" data-date
                                     name="endDate"
                                     class="appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block w-full h-[48px] py-2 px-4" />
                             </div>
@@ -366,7 +365,7 @@
                                     <span class="text-gray-50 text-md lg:text-lg font-black">ماكينة الايس كريم</span>
                                 </label>
                                 <p class="text-md text-gray-200 flex flex-col">
-                                    <span>متوفر مع 70 قطعة بسكوت 2 كريمة ايس كريم فانيلا 2 كريمة ايس كريم كاكاو يشمل
+                                    <span>متوفر مع 48 قطعة بسكوت 3 كريمة ايس كريم فانيلا 3 كريمة ايس كريم كاكاو يشمل
                                         الباكج عربانة ايس كريم شامل التوصيل.</span>
                                     <span>السعر: <span
                                             class="text-gray-50 font-black text-lg">{{ App\Models\Setting::first()->icecream }}</span>
@@ -408,45 +407,6 @@
                             </div>
                         </div>
                     </div>
-                    <h3 class="text-gray-50 text-xl lg:text-2xl font-black mb-2 mt-4">معلومات الدفع</h3>
-                    <div class="flex flex-col lg:flex-row gap-4 lg:gap-8 items-start">
-                        <div class="w-full lg:w-0 flex-1 flex flex-col lg:flex-row gap-2 lg:gap-0">
-                            <label for="pname"
-                                class="text-gray-50 text-md lg:text-lg flex items-center lg:h-[48px] font-black lg:w-[160px]">الاسم
-                                الكامل</label>
-                            <input type="text" id="pname"
-                                class="flex-1 appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block w-full h-[48px] py-2 px-4" />
-                        </div>
-                        <div class="flex-1 flex-col lg:flex-row gap-2 lg:gap-0 hidden lg:block"></div>
-                    </div>
-                    <div class="flex flex-col lg:flex-row gap-4 lg:gap-8 items-start">
-                        <div class="w-full lg:w-0 flex-1 flex flex-col lg:flex-row gap-2 lg:gap-0">
-                            <label for="pnumber"
-                                class="text-gray-50 text-md lg:text-lg flex items-center lg:h-[48px] font-black lg:w-[160px]">رقم
-                                البطاقة</label>
-                            <input type="text" id="pnumber"
-                                class="flex-1 appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block w-full h-[48px] py-2 px-4" />
-                        </div>
-                        <div class="w-full lg:w-0 flex-1 flex flex-col lg:flex-row gap-2 lg:gap-0">
-                            <label for="psecret"
-                                class="text-gray-50 text-md lg:text-lg flex items-center lg:h-[48px] font-black lg:w-[160px]">الرمز
-                                السري</label>
-                            <input type="text" id="psecret"
-                                class="flex-1 appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block w-full h-[48px] py-2 px-4" />
-                        </div>
-                    </div>
-                    <div class="flex flex-col lg:flex-row gap-4 lg:gap-8 items-start">
-                        <div class="w-full lg:w-0 flex-1 flex flex-col lg:flex-row gap-2 lg:gap-0">
-                            <label for="pdate"
-                                class="text-gray-50 text-md lg:text-lg flex items-center lg:h-[48px] font-black lg:w-[160px]">تاريخ
-                                إنتهاء</label>
-                            <div class="flex-1 rounded-md lg:rounded-xl bg-[#4c4643] text-gray-50">
-                                <input x-date type="date" id="pdate"
-                                    class="appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block w-full h-[48px] py-2 px-4" />
-                            </div>
-                        </div>
-                        <div class="flex-1 flex-col lg:flex-row gap-2 lg:gap-0 hidden lg:block"></div>
-                    </div>
                     <div class="flex flex-col gap-2 mt-2">
                         <label class="w-max flex gap-4 flex-wrap items-center">
                             <input id="check" type="checkbox" class="sr-only peer">
@@ -473,7 +433,7 @@
             </div>
         </section>
     </main>
-    <script src="{{ asset('js/index.js') }}"></script>
+    <script src="{{ asset('js/index.js') }}{{ env('PUBLIC_VERSION') }}"></script>
     <script>
         @if (Session::has('message'))
             const info = {!! json_encode(Session::all()) !!};

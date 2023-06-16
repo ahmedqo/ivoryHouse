@@ -25,7 +25,7 @@ class CreateReservationsTable extends Migration
             $table->string('socialNumber');
             $table->string('address');
             $table->json('extra')->nullable();
-            $table->string('status')->default(1);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
 
             $table->foreign('property')->references('id')->on('properties')->onUpdate('cascade');

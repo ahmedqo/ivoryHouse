@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\SystemController;
@@ -14,3 +15,9 @@ Route::post('/properties/{id}/reservations/create', [ReservationController::clas
 
 Route::post('/contact/create', [SystemController::class, 'contact'])->name('actions.home.contact');
 Route::get('/back/{name}/{token}', [SystemController::class, 'store'])->name('actions.home.back');
+
+Route::post('/success', [PaymentController::class, 'success'])->name('views.success');
+
+Route::post('/error', function () {
+    echo "Error";
+})->name('views.error');

@@ -15,7 +15,6 @@ class DateFunction
         $endDate = Carbon::parse($endDate);
 
         $period = CarbonPeriod::create($startDate, $endDate);
-
         $dates = [];
 
         foreach ($period as $date) {

@@ -21,7 +21,7 @@ class SendMail extends Mailable
     {
         $this->data = $data;
         $this->from =  [
-            'address' => env('MAIL_CONTACT_ADDRESS'),
+            'address' => env('MAIL_FROM_ADDRESS'),
         ];
     }
 

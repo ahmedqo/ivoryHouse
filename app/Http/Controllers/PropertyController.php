@@ -52,11 +52,11 @@ class PropertyController extends Controller
 
     public function search(Request $request)
     {
-        $address = $request->address ?? '';
+        //$address = $request->address ?? '';
         $startDate = $request->startDate ?? now();
         $endDate = $request->endDate ?? now();
 
-        $properties = Property::where(DB::raw("CONCAT(address, ' ', state, ' ', city, ' ', zipcode)"), 'like', "%$address%")->get();
+        $properties = Property::get(); //where(DB::raw("CONCAT(address, ' ', state, ' ', city, ' ', zipcode)"), 'like', "%$address%")->get();
 
         foreach ($properties as $property) {
             $exist = Reservation::where('property', $property->id)->where('status', 1)
@@ -113,9 +113,9 @@ class PropertyController extends Controller
             'garden' => ['required', 'string'],
             'map' => ['required', 'string'],
             'address' => ['required', 'string'],
-            'state' => ['required', 'string'],
-            'city' => ['required', 'string'],
-            'zipcode' => ['required', 'string'],
+            //'state' => ['required', 'string'],
+            //'city' => ['required', 'string'],
+            //'zipcode' => ['required', 'string'],
             'description' => ['required', 'string'],
         ]);
 
@@ -140,14 +140,14 @@ class PropertyController extends Controller
             'specialPrice' => $request->specialPrice,
             'area' => $request->area,
             'rooms' => $request->rooms,
-            'kitchen' => $request->kitchen,
-            'garage' => $request->garage,
-            'garden' => $request->garden,
+            'kitchen' => (bool) $request->kitchen,
+            'garage' => (bool) $request->garage,
+            'garden' => (bool) $request->garden,
             'map' => $request->map,
             'address' => $request->address,
-            'state' => $request->state,
-            'city' => $request->city,
-            'zipcode' => $request->zipcode,
+            //'state' => $request->state,
+            //'city' => $request->city,
+            //'zipcode' => $request->zipcode,
             'description' => $request->description,
         ]);
 
@@ -173,9 +173,9 @@ class PropertyController extends Controller
             'garden' => ['required', 'string'],
             'map' => ['required', 'string'],
             'address' => ['required', 'string'],
-            'state' => ['required', 'string'],
-            'city' => ['required', 'string'],
-            'zipcode' => ['required', 'string'],
+            //'state' => ['required', 'string'],
+            //'city' => ['required', 'string'],
+            //'zipcode' => ['required', 'string'],
             'description' => ['required', 'string'],
         ]);
 
@@ -202,14 +202,14 @@ class PropertyController extends Controller
             'specialPrice' => $request->specialPrice,
             'area' => $request->area,
             'rooms' => $request->rooms,
-            'kitchen' => $request->kitchen,
-            'garage' => $request->garage,
-            'garden' => $request->garden,
+            'kitchen' => (bool) $request->kitchen,
+            'garage' => (bool) $request->garage,
+            'garden' => (bool) $request->garden,
             'map' => $request->map,
             'address' => $request->address,
-            'state' => $request->state,
-            'city' => $request->city,
-            'zipcode' => $request->zipcode,
+            //'state' => $request->state,
+            //'city' => $request->city,
+            //'zipcode' => $request->zipcode,
             'description' => $request->description,
         ]);
 

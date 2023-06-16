@@ -56,8 +56,8 @@
                 </a>
             </li>
             <li class="w-full">
-                <a href="#"
-                    class="w-full flex gap-2 items-center px-4 py-2 outline-none text-gray-50 hover:bg-yellow-400 focus:bg-yellow-400">
+                <a href="{{ route('views.payments.index') }}"
+                    class="w-full flex gap-2 items-center px-4 py-2 outline-none text-gray-50 hover:bg-yellow-400 focus:bg-yellow-400 {{ Link::is_active('views.payments.index') }}">
                     <svg class="block w-5 h-5 pointer-events-none" fill="currentcolor" viewBox="0 96 960 960">
                         <path
                             d="M551.5 613q49.5 0 84.5-34.708 35-34.709 35-84.292 0-50.417-35-85.708Q601 373 551 373t-85 35.5q-35 35.5-35 85.206t35.5 84.5Q502 613 551.5 613ZM256 773q-37.725 0-64.863-26.438Q164 720.125 164 681V306q0-37.188 27.137-64.594Q218.275 214 256 214h592q36.775 0 63.887 27.406Q939 268.812 939 306v375q0 39.125-27.113 65.562Q884.775 773 848 773H256ZM112 916q-36.775 0-63.888-27.112Q21 861.775 21 825V425q0-19.775 13.56-32.388Q48.12 380 66.86 380 87 380 99.5 392.612 112 405.225 112 425v400h639q18.375 0 31.688 13.375Q796 851.751 796 870.491q0 18.741-13.312 32.125Q769.375 916 751 916H112Zm132-523q41.062 0 70.031-29.469Q343 334.062 343 294h-99v99Zm615 0v-99h-99q0 40 28.525 69.5T859 393ZM244 693h99q0-40.65-28.969-69.325Q285.062 595 244 595v98Zm516 0h99v-98q-42 0-70.5 28.675T760 693Z" />

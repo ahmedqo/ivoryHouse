@@ -21,7 +21,7 @@ class ResetMail extends Mailable
     {
         $this->data = $data;
         $this->from =  [
-            'address' => env('MAIL_NOREPLAY_ADDRESS'),
+            'address' => env('MAIL_FROM_ADDRESS'),
         ];
     }
 

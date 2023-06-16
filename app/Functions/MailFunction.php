@@ -39,7 +39,7 @@ class MailFunction
     public static function contact($data)
     {
         $mail = new ContactMail($data);
-        Mail::to('contact@example.com')->send($mail);
+        Mail::to(env('MAIL_CONTACT_ADDRESS'))->send($mail);
         return true;
     }
 

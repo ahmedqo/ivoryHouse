@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Functions\BankFunction;
 use App\Functions\DateFunction;
 use App\Functions\MailFunction;
 use App\Models\Property;
 use App\Models\Setting;
 use App\Models\Reservation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
-use Carbon\Carbon;
 
 class ReservationController extends Controller
 {
@@ -67,8 +68,8 @@ class ReservationController extends Controller
     {
         $current = Reservation::findorfail($id);
 
-        $startDate = $current->startDate;
-        $endDate = $current->endDate;
+        $startDate = Carbon::parse($current->startDate);
+        $endDate = Carbon::parse($current->endDate);
 
         $exist = Reservation::where('status', 1)
             ->where(function ($query) use ($startDate, $endDate) {
@@ -110,7 +111,7 @@ class ReservationController extends Controller
             'email' => ['required', 'email'],
             'phone' => ['required', 'string'],
             'startDate' => ['required', 'date', 'after_or_equal:today'],
-            'endDate' => ['required', 'date', 'after:startDate +3 days'],
+            'endDate' => ['required', 'date', 'after:startDate +2 days'],
             'socialNumber' => ['required', 'string'],
             'address' => ['required', 'string'],
         ]);
@@ -122,8 +123,8 @@ class ReservationController extends Controller
             ]);
         }
 
-        $startDate = $request->startDate;
-        $endDate = $request->endDate;
+        $startDate = Carbon::parse($request->startDate);
+        $endDate = Carbon::parse($request->endDate);
 
         $exist = Reservation::where('property', $id)->where('status', 1)
             ->where(function ($query) use ($startDate, $endDate) {
@@ -176,21 +177,35 @@ class ReservationController extends Controller
             'extra' => json_encode($json)
         ]);
 
-        $data = [
-            'id' => $id,
-            'reservation' => $current,
-            'title' => 'لقد تم تأكيد حجزك.',
-            'subject' => 'تأكيد الحجز',
-        ];
+        $trackId = base64_encode($current->id);
+        $TranportalId = env('BANK_TRANSPORTAL');
+        $password = env('BANK_PASSWORD');
+        $ReqUdf1 = 'udf1=Test1';
+        $ReqUdf2 = 'udf2=Test2';
+        $ReqUdf3 = 'udf3=Test3';
+        $ReqUdf4 = 'udf4=Test4';
+        $ReqUdf5 = 'udf5=Test5';
+        $keyCode = str_pad(env('BANK_TERMINAL'), 16, "\0");
+        $params = "id=$TranportalId&password=$password&action=1&langid=USA&currencycode=414&amt=$price&responseURL=" . route('views.success') . "&errorURL=" . route('views.error') . "&trackid=$trackId&$ReqUdf1&$ReqUdf2&$ReqUdf3&$ReqUdf4&$ReqUdf5";
+        $data = BankFunction::encrypt($params, $keyCode) . "&tranportalId=$TranportalId&responseURL=" . route('views.success') . "&errorURL=" . route('views.error');
 
-        foreach ([$request->email, env('MAIL_SYSTEM_ADDRESS')] as $email) {
-            MailFunction::send($email, $data);
-        }
+        return Redirect::to(env('BANK_URL') . "&trandata=$data");
 
-        return Redirect::route('views.property.show', $property->slug)->with([
-            'message' => 'تم الاستئجار بنجاح',
-            'type' => 'success'
-        ]);
+        // $data = [
+        //     'id' => $id,
+        //     'reservation' => $current,
+        //     'title' => 'لقد تم تأكيد حجزك.',
+        //     'subject' => 'تأكيد الحجز',
+        // ];
+
+        // foreach ([$request->email, env('MAIL_SYSTEM_ADDRESS')] as $email) {
+        //     MailFunction::send($email, $data);
+        // }
+
+        // return Redirect::route('views.property.show', $property->slug)->with([
+        //     'message' => 'تم الاستئجار بنجاح',
+        //     'type' => 'success'
+        // ]);
     }
 
     public function update(Request $request, $id)
@@ -215,8 +230,8 @@ class ReservationController extends Controller
             ]);
         }
 
-        $startDate = $request->input('startDate');
-        $endDate = $request->input('endDate');
+        $startDate = Carbon::parse($request->startDate)->addDay();
+        $endDate = Carbon::parse($request->endDate);
 
         $exist = Reservation::where('id', '!=', $id)->where('property', $request->property)->where('status', 1)
             ->where(function ($query) use ($startDate, $endDate) {
@@ -282,7 +297,7 @@ class ReservationController extends Controller
             'phone' => $request->phone,
             'startDate' => $request->startDate,
             'endDate' => $request->endDate,
-            'status' => $request->status,
+            'status' => (int) $request->status,
             'socialNumber' => $request->socialNumber,
             'address' => $request->address,
             'extra' => json_encode($json)
