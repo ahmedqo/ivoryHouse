@@ -1234,7 +1234,7 @@ function validateForm(form, fields) {
     }
 
     if (success) {
-        const period = getDateRange(document.querySelector("#startDate[data-date]").value, document.querySelector("#endDate[data-date]").value);
+        const period = getDateRange(document.querySelector("#startDate").value, document.querySelector("#endDate").value);
         if (period.length < 3) {
             message = "مدة الحجز يجب أن تكون لا تقل عن 3 أيام";
             success = false;

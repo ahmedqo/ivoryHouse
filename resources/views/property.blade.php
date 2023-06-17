@@ -321,7 +321,7 @@
                                 class="text-gray-50 text-md lg:text-lg flex items-center lg:h-[48px] font-black lg:w-[160px]">موعد
                                 الدخول</label>
                             <div class="flex-1 rounded-md lg:rounded-xl bg-[#4c4643] text-gray-50">
-                                <input x-date x-remove="{{ $data->dates }}" type="date" id="startDate" data-date
+                                <input x-date x-remove="{{ $data->dates }}" type="date" id="startDate"
                                     name="startDate"
                                     class="appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block w-full h-[48px] py-2 px-4" />
                             </div>
@@ -331,7 +331,7 @@
                                 class="text-gray-50 text-md lg:text-lg flex items-center lg:h-[48px] font-black lg:w-[160px]">موعد
                                 الخروج</label>
                             <div class="flex-1 rounded-md lg:rounded-xl bg-[#4c4643] text-gray-50">
-                                <input x-date x-remove="{{ $data->dates }}" type="date" id="endDate" data-date
+                                <input x-date x-remove="{{ $data->dates }}" type="date" id="endDate"
                                     name="endDate"
                                     class="appearance-none bg-[#4c4643] text-gray-50 text-lg rounded-md lg:rounded-xl block w-full h-[48px] py-2 px-4" />
                             </div>
@@ -503,7 +503,7 @@
             const data = ["startDate", "endDate"];
             for (let [key, value] of searchParams.entries()) {
                 if (data.includes(key) && value.trim().length)
-                    document.querySelector(`#${key}`)?.setAttribute("value", value);
+                    [...document.querySelectorAll(`[name="${key}"]`)].forEach(e => e.setAttribute("value", value));
             }
         }
 
